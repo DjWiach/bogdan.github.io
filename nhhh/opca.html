@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Центр инноваций Вектор — ведущая IT-компания, создающая цифровые решения будущего. Карьера, проекты, инновации, команда профессионалов.">
+    <title>Центр инноваций "Вектор" | Главная — технологии будущего</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #1a1f2c;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #eef2f6;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 18px 0;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3c72, #2b4c7c, #1f6392);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #6c7f9e;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2c3e58;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .nav-links a:hover {
+            color: #1e5b9e;
+        }
+        .btn-outline-light {
+            background: transparent;
+            border: 1.5px solid #1e5b9e;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: #1e5b9e;
+            font-weight: 600;
+            transition: 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-outline-light:hover {
+            background: #1e5b9e;
+            color: white;
+        }
+
+        /* Hero секция */
+        .hero {
+            background: linear-gradient(110deg, #f0f6fe 0%, #ffffff 100%);
+            padding: 80px 0 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+        }
+        .hero-content {
+            flex: 1.2;
+            min-width: 280px;
+        }
+        .hero-badge {
+            background: #e1ecf9;
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1f6392;
+            margin-bottom: 24px;
+        }
+        .hero-content h2 {
+            font-size: 3.1rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #0a2942;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        .hero-content p {
+            font-size: 1.15rem;
+            color: #4a627a;
+            max-width: 540px;
+            margin-bottom: 32px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #1e5b9e;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 44px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s;
+            display: inline-block;
+            box-shadow: 0 8px 18px rgba(30,91,158,0.2);
+        }
+        .btn-primary:hover {
+            background: #0f4574;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px rgba(30,91,158,0.25);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1.5px solid #cad3e2;
+            color: #2c3e58;
+            padding: 12px 32px;
+            border-radius: 44px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            border-color: #1e5b9e;
+            color: #1e5b9e;
+            background: #f5faff;
+        }
+        .hero-stats {
+            flex: 0.9;
+            background: white;
+            border-radius: 48px;
+            padding: 32px 28px;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.12);
+            border: 1px solid #eef3fc;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e5b9e;
+        }
+        .stat-item p {
+            font-size: 0.9rem;
+            color: #5c6f91;
+        }
+
+        /* Преимущества */
+        .features {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #0a2942;
+        }
+        .section-sub {
+            text-align: center;
+            color: #5b6f8c;
+            max-width: 640px;
+            margin: 0 auto 56px;
+            font-size: 1.1rem;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 36px;
+        }
+        .feature-card {
+            background: #fafcff;
+            border-radius: 32px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: 0.25s;
+            border: 1px solid #ecf2f9;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: #dce5f0;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+        }
+        .feature-icon {
+            font-size: 2.7rem;
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+        .feature-card p {
+            color: #556b89;
+        }
+
+        /* О компании */
+        .about {
+            background: #f5f9fe;
+            padding: 80px 0;
+        }
+        .about-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            align-items: center;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            color: #3a5575;
+            margin-bottom: 20px;
+        }
+        .about-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        .about-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .about-image {
+            flex: 1;
+            background: linear-gradient(145deg, #dce5f0, #ffffff);
+            border-radius: 48px;
+            padding: 40px 30px;
+            text-align: center;
+            font-size: 3rem;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+        }
+
+        /* Проекты */
+        .projects {
+            padding: 80px 0;
+            background: white;
+        }
+        .projects-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .project-card {
+            background: #fbfdff;
+            border-radius: 28px;
+            padding: 28px;
+            border: 1px solid #eef3fa;
+            transition: 0.2s;
+        }
+        .project-icon {
+            font-size: 2.2rem;
+            margin-bottom: 18px;
+        }
+        .project-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+        }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, #0a2942 0%, #1e3c72 100%);
+            padding: 70px 0;
+            text-align: center;
+            color: white;
+        }
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        .cta p {
+            max-width: 560px;
+            margin: 0 auto 32px;
+            opacity: 0.9;
+        }
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .btn-white {
+            background: white;
+            color: #1e3c72;
+            padding: 14px 38px;
+            border-radius: 44px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .btn-white:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .btn-outline-admin {
+            background: transparent;
+            border: 1.5px solid rgba(255,255,255,0.6);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 44px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .btn-outline-admin:hover {
+            background: rgba(255,255,255,0.15);
+            border-color: white;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0b1c2c;
+            color: #b2c4de;
+            padding: 48px 0 32px;
+        }
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col p {
+            margin-top: 12px;
+            font-size: 0.85rem;
+        }
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #b2c4de;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .footer-links a:hover {
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 28px;
+            border-top: 1px solid #1e3450;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 800px) {
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            .hero-grid {
+                flex-direction: column;
+            }
+            .header-inner {
+                flex-direction: column;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo">
+            <h1>Вектор·Тех</h1>
+            <span>инновационный центр</span>
+        </div>
+        <div class="nav-links">
+            <a href="opca.html">Главная</a>
+            <a href="#about">О компании</a>
+            <a href="#projects">Проекты</a>
+            <a href="index.html" id="careersLink">Карьера</a>
+            <a href="#contacts" class="btn-outline-light" id="contactsLink">Контакты</a>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero блок -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">⭐ Лидер цифровой трансформации 2025</div>
+                <h2>Создаём технологии,<br>которые меняют будущее</h2>
+                <p>Центр инноваций "Вектор" — ведущая IT-команда, объединяющая экспертов в области AI, больших данных и передовой разработки.</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn-primary">Узнать о нас →</a>
+                    <a href="index.html" class="btn-secondary">Открытые вакансии</a><!-- смена порта -->
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>300+</h3>
+                        <p>профессионалов</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>15+</h3>
+                        <p>стран присутствия</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>98%</h3>
+                        <p>довольных клиентов</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>успешных продуктов</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Почему профессионалы выбирают Вектор</h2>
+            <p class="section-sub">Инновационная среда, поддержка идей и реальный вклад в технологический прогресс</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Амбициозные проекты</h3>
+                    <p>Участвуй в создании AI-решений, IoT-платформ и цифровых экосистем для лидеров рынка.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Карьерный рост</h3>
+                    <p>Индивидуальные треки развития, менторинг, бюджет на обучение и конференции.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏡</div>
+                    <h3>Гибкий формат</h3>
+                    <p>Удалёнка, гибрид или уютный офис — выбирай то, что вдохновляет именно тебя.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💎</div>
+                    <h3>Забота о команде</h3>
+                    <p>ДМС с первого дня, страхование, современное оборудование и корпоративные мероприятия.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- О компании -->
+    <section id="about" class="about">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h3>Инновации — в нашей ДНК</h3>
+                <p>Центр инноваций "Вектор" основан в 2015 году с целью объединить талантливых инженеров, дизайнеров и менеджеров для создания прорывных решений.</p>
+                <p>Мы верим, что лучшие продукты рождаются в атмосфере свободы, открытости и взаимного уважения. Наши команды работают над задачами, которые меняют облик FinTech, EdTech и корпоративного софта.</p>
+                <ul class="about-list">
+                    <li>✅ Более 50 успешно реализованных проектов</li>
+                    <li>✅ Партнёрство с топовыми технологическими компаниями</li>
+                    <li>✅ R&D-центр и собственная лаборатория инноваций</li>
+                </ul>
+            </div>
+            <div class="about-image">
+                <span style="font-size: 4rem;">🧠💡</span>
+                <p style="margin-top: 20px; font-weight: 500;">Команда единомышленников<br> > 300 экспертов</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Проекты -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Ключевые проекты и направления</h2>
+            <p class="section-sub">То, чем мы гордимся и что вдохновляет нас двигаться вперёд</p>
+            <div class="projects-slider">
+                <div class="project-card">
+                    <div class="project-icon">🤖</div>
+                    <h4>AI-платформа «NeuroVector»</h4>
+                    <p>Интеллектуальная аналитика для ритейла и логистики, обработка больших данных в реальном времени.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">🌐</div>
+                    <h4>Цифровая экосистема SmartCity</h4>
+                    <p>Решение для управления городской инфраструктурой, IoT и прогнозной аналитикой.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">📱</div>
+                    <h4>Образовательная платформа «EduTech»</h4>
+                    <p>Интерактивная среда для школ и университетов с элементами геймификации.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Карьера + Кнопка добавления вакансий -->
+    <section class="cta">
+        <div class="container">
+            <h2>Готов стать частью команды будущего?</h2>
+            <p>Присоединяйся к лидерам инноваций. Открыты позиции для разработчиков, аналитиков, продактов и дизайнеров.</p>
+            <div class="cta-buttons">
+                <a href="index.html" class="btn-white">Смотреть вакансии →</a>
+                <!-- Новая кнопка для добавления вакансий (административный доступ) -->
+                <a href="add-vacancy.html" class="btn-outline-admin">➕ Добавить вакансию (HR/Админ)</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3 style="color:white; margin-bottom:12px;">Вектор·Тех</h3>
+                <p>Центр инноваций, создающий передовые IT-решения с человеческим лицом.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Навигация</h4>
+                <ul class="footer-links">
+                    <li><a href="opca.html">Главная</a></li>
+                    <li><a href="#about">О компании</a></li>
+                    <li><a href="#projects">Проекты</a></li>
+                    <li><a href="index.html">Карьера</a></li>
+                    <!-- дополнительная ссылка для администрирования вакансий -->
+                    <li><a href="add-vacancy.html" style="color:#9bb7e0;">📋 Управление вакансиями</a></li>
+                </ul>
+            </div>
+            <div class="footer-col" id="contacts">
+                <h4>Контакты</h4>
+                <ul class="footer-links">
+                    <li>📧 hr@vector-tech.ru</li>
+                    <li>📍 Москва, ул. Инновационная, 12</li>
+                    <li>📞 +7 (495) 123-45-67</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 Центр инноваций "Вектор". Все права защищены. Мы создаём будущее сегодня.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Плавная прокрутка для внутренних якорей
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href === "#" || href === "#about" || href === "#projects" || href === "#contacts") {
+                const targetId = href === "#" ? null : href;
+                if(targetId) {
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+        });
+    });
+
+    // Обработка кнопки "Узнать о нас"
+    const aboutBtn = document.querySelector('.btn-primary');
+    if(aboutBtn && aboutBtn.getAttribute('href') === "#about") {
+        aboutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const aboutSection = document.getElementById('about');
+            if(aboutSection) aboutSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+
+    // Для ссылки "Контакты" в header
+    const contactsHeaderLink = document.getElementById('contactsLink');
+    if(contactsHeaderLink) {
+        contactsHeaderLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const contactsSection = document.getElementById('contacts');
+            if(contactsSection) contactsSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+</script>
+
+<!-- 
+    ============================================================
+    ИНСТРУКЦИЯ по созданию страницы добавления вакансий (add-vacancy.html)
+    Чтобы кнопка "Добавить вакансию" работала, создайте файл add-vacancy.html
+    в той же директории. Ниже представлен минимальный пример такой страницы.
+    Вы можете расширить её под свои нужды (админ-панель, база данных и т.д.).
+    ============================================================
+
+    СОДЕРЖАНИЕ ФАЙЛА add-vacancy.html (пример):
+
+    <!DOCTYPE html>
+    <html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Добавление вакансии | Центр инноваций Вектор</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <style>
+            *{margin:0;padding:0;box-sizing:border-box;}
+            body{font-family:'Inter',sans-serif;background:#f4f7fc;color:#1a1f2c;padding:40px 20px;}
+            .container{max-width:900px;margin:0 auto;}
+            .card{background:white;border-radius:36px;padding:40px;box-shadow:0 20px 35px -12px rgba(0,0,0,0.1);}
+            h1{font-size:2rem;margin-bottom:8px;}
+            .back-link{display:inline-block;margin-bottom:32px;color:#1e5b9e;text-decoration:none;font-weight:500;}
+            .form-group{margin-bottom:24px;}
+            label{font-weight:600;display:block;margin-bottom:8px;color:#0f2c44;}
+            input, select, textarea{width:100%;padding:14px 18px;border:1px solid #dce5f0;border-radius:28px;font-family:inherit;font-size:1rem;transition:0.2s;}
+            input:focus, select:focus, textarea:focus{outline:none;border-color:#1e5b9e;box-shadow:0 0 0 3px rgba(30,91,158,0.2);}
+            button{background:#1e5b9e;color:white;border:none;padding:14px 32px;border-radius:44px;font-weight:700;font-size:1rem;cursor:pointer;transition:0.2s;}
+            button:hover{background:#0f4574;}
+            .message{margin-top:20px;padding:12px;border-radius:28px;display:none;}
+            .success{background:#e0f2e9;color:#1e6f3f;}
+            hr{margin:30px 0;border-color:#ecf2f9;}
+            .jobs-preview{background:#fafcff;border-radius:28px;padding:20px;margin-top:30px;}
+            .jobs-preview h3{font-size:1.2rem;margin-bottom:15px;}
+            .job-item{background:white;border-radius:20px;padding:15px;margin-bottom:12px;border:1px solid #eef2fa;}
+            @media(max-width:650px){.card{padding:24px;}}
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <a href="index.html" class="back-link">← На главную</a>
+        <div class="card">
+            <h1>➕ Добавить новую вакансию</h1>
+            <p style="margin-bottom:32px;color:#5c6f8e;">Заполните форму — информация появится на странице вакансий (требуется后端 интеграция или localStorage для демо).</p>
+            <form id="vacancyForm">
+                <div class="form-group"><label>Название вакансии *</label><input type="text" id="title" placeholder="Например: Senior React-разработчик" required></div>
+                <div class="form-group"><label>Отдел / Департамент</label><select id="department"><option value="IT">IT</option><option value="Маркетинг">Маркетинг</option><option value="Продажи">Продажи</option><option value="Аналитика">Аналитика</option></select></div>
+                <div class="form-group"><label>Локация</label><input type="text" id="location" placeholder="Москва / удалённо / гибрид"></div>
+                <div class="form-group"><label>Зарплата</label><input type="text" id="salary" placeholder="от 200 000 ₽"></div>
+                <div class="form-group"><label>Описание</label><textarea id="desc" rows="3" placeholder="Ключевые задачи и требования..."></textarea></div>
+                <div class="form-group"><label>Теги (через запятую)</label><input type="text" id="tags" placeholder="React, TypeScript, Redux"></div>
+                <button type="submit">📌 Опубликовать вакансию</button>
+                <div id="formMessage" class="message"></div>
+            </form>
+            <hr>
+            <div class="jobs-preview">
+                <h3>📋 Недавно добавленные (демо)</h3>
+                <div id="previewList">Загрузка...</div>
+                <p style="font-size:0.75rem; margin-top:15px;">* В реальном проекте данные отправляются на сервер. Сейчас сохранение происходит в localStorage для демонстрации.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function loadDemoJobs(){ const raw=localStorage.getItem('custom_jobs'); const jobs=raw?JSON.parse(raw):[]; const previewDiv=document.getElementById('previewList'); if(!previewDiv) return; if(jobs.length===0){ previewDiv.innerHTML='<p style="color:#7e95b2;">Пока нет добавленных вакансий. Создайте первую!</p>'; return; } previewDiv.innerHTML=jobs.slice(-5).reverse().map(j=>`<div class="job-item"><strong>${j.title}</strong> — ${j.department} (${j.location})<br><small>${j.desc.substring(0,80)}...</small></div>`).join(''); }
+        document.getElementById('vacancyForm').addEventListener('submit',function(e){ e.preventDefault(); const title=document.getElementById('title').value.trim(); const department=document.getElementById('department').value; const location=document.getElementById('location').value.trim()||"Москва/гибрид"; const salary=document.getElementById('salary').value.trim()||"договорная"; const desc=document.getElementById('desc').value.trim()||"Интересные задачи и профессиональный рост"; const tagsRaw=document.getElementById('tags').value.trim(); const tags=tagsRaw?tagsRaw.split(',').map(t=>t.trim()):[]; if(!title){ alert('Укажите название вакансии'); return; } const newJob={ id:Date.now(), title, department, location, salary, desc, tags:tags.length?tags:[department] }; const stored=localStorage.getItem('custom_jobs'); const currentJobs=stored?JSON.parse(stored):[]; currentJobs.push(newJob); localStorage.setItem('custom_jobs',JSON.stringify(currentJobs)); const msgDiv=document.getElementById('formMessage'); msgDiv.textContent='✔ Вакансия добавлена! Она появится в списке (требуется интеграция с основным файлом вакансий)'; msgDiv.className='message success'; msgDiv.style.display='block'; setTimeout(()=>{msgDiv.style.display='none';},4000); document.getElementById('vacancyForm').reset(); loadDemoJobs(); alert(`Вакансия "${title}" сохранена локально. Чтобы она отображалась на странице вакансий, необходимо объединить данные (в реальном проекте отправка на бэкенд).`); }); loadDemoJobs();
+    </script>
+    </body>
+    </html>
+
+    ============================================================
+    Также не забудьте про существующую страницу вакансий (index.html или vacancies.html),
+    которая должна отображать добавленные позиции. При необходимости доработайте её.
+    ============================================================
+-->
+</body>
+</html>
