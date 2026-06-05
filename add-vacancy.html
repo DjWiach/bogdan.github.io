@@ -1,481 +1,615 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Магия круга: клонирование, квадрат и закручивание | CSS-анимация</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            user-select: none; /* чисто визуально, убирает выделение */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Вектор·Тех | 3D Карусель вакансий</title>
+  <!-- Google Fonts + стили -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & GLOBAL ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
 
-        body {
-            min-height: 100vh;
-            background: linear-gradient(145deg, #1a2a3a 0%, #0f1a24 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Inter', sans-serif;
-        }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f5f7fb;
+      color: #1a1f2c;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
 
-        /* Контейнер-сцена для абсолютного позиционирования элементов */
-        .animation-scene {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            background: rgba(30, 40, 50, 0.4);
-            border-radius: 60px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255,255,255,0.1);
-            backdrop-filter: blur(2px);
-            overflow: visible;
-            margin: 20px auto;
-            border: 1px solid rgba(255,215,150,0.3);
-        }
+    /* Header (как в стиле Вектор·Тех) */
+    .header {
+      background: white;
+      border-bottom: 1px solid #e9edf2;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .logo h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #1e3c72, #2b4c7c);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+    .logo span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #5b6e8c;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c3e58;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      color: #1e5b9e;
+    }
 
-        /* общий стиль для всех фигур (центральный круг + клоны) */
-        .shape {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-color: #ff5e7c;
-            background: radial-gradient(circle at 35% 35%, #ff7b99, #e83e62);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.3), 0 0 0 2px rgba(255,220,150,0.6);
-            will-change: transform, border-radius, opacity, rotate;
-            pointer-events: none;
-        }
+    /* Hero секция */
+    .hero {
+      background: #f5f7fb;
+      text-align: center;
+      padding: 40px 24px 20px;
+    }
+    .hero h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0a2942;
+      margin-bottom: 8px;
+    }
+    .hero p {
+      color: #4a627a;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .hero-badge {
+      background: #e9f0f9;
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1f6392;
+      margin-bottom: 16px;
+    }
 
-        /* ----- ЦЕНТРАЛЬНЫЙ КРУГ (уменьшается и клонирует суть) ----- */
-        .central-circle {
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            animation: centralDance 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-            z-index: 10;
-            background: radial-gradient(circle at 30% 30%, #ff8c6b, #e6344c);
-        }
+    /* Блок поиска */
+    .search-container {
+      max-width: 1200px;
+      margin: 24px auto 20px;
+      padding: 0 24px;
+    }
+    .search-wrapper {
+      background: white;
+      border-radius: 60px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      padding: 6px 6px 6px 24px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      backdrop-filter: blur(4px);
+    }
+    .search-wrapper input {
+      flex: 1;
+      border: none;
+      padding: 14px 0;
+      font-size: 1rem;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      min-width: 180px;
+    }
+    .search-wrapper button {
+      background: #1e5b9e;
+      border: none;
+      color: white;
+      padding: 10px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+    }
+    .search-wrapper button:hover {
+      background: #0f4574;
+    }
+    .result-count {
+      background: #f0f4fa;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #2c3e58;
+    }
 
-        /* Базовое состояние для клонов (скрыты, но позиционированы в центре старта) */
-        .clone {
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            opacity: 0;
-            z-index: 20;
-            background: radial-gradient(circle at 30% 30%, #ffa07a, #ff4757);
-        }
+    /* 3D СЦЕНА + КАРУСЕЛЬ */
+    .scene {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      max-width: 1400px;
+      margin: 20px auto 40px;
+      perspective: 35em;
+      overflow: visible;
+      mask: linear-gradient(90deg, #0000, #000 15% 85%, #0000);
+      -webkit-mask: linear-gradient(90deg, #0000, #000 15% 85%, #0000);
+    }
+    .a3d {
+      display: grid;
+      transform-style: preserve-3d;
+      animation: rotateCarousel 40s linear infinite;
+      will-change: transform;
+      place-items: center;
+    }
+    @keyframes rotateCarousel {
+      to { rotate: y 1turn; }
+    }
+    /* Карточка вакансии в 3D */
+    .vacancy-card {
+      --w: 18rem;                /* ширина карточки */
+      --ba: 1turn / var(--n);
+      grid-area: 1 / 1;
+      width: var(--w);
+      background: white;
+      border-radius: 28px;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.2);
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      backface-visibility: hidden;
+      transform: rotatey(calc(var(--i) * var(--ba))) translatez(calc(-1 * (0.5 * var(--w) + 0.6rem) / tan(0.5 * var(--ba))));
+      transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      border: 1px solid #eff2f9;
+    }
+    .vacancy-card:hover {
+      filter: brightness(1.01);
+      box-shadow: 0 28px 38px -16px rgba(0,0,0,0.3);
+      transform: rotatey(calc(var(--i) * var(--ba))) translatez(calc(-1 * (0.5 * var(--w) + 0.6rem) / tan(0.5 * var(--ba)))) scale(1.02);
+    }
+    .card-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0d2e45;
+      line-height: 1.3;
+    }
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.75rem;
+      color: #5e7a9a;
+      border-bottom: 1px dashed #eef2f8;
+      padding-bottom: 8px;
+    }
+    .card-salary {
+      font-weight: 700;
+      color: #1e5b9e;
+      font-size: 1rem;
+      margin-top: 4px;
+    }
+    .card-desc {
+      font-size: 0.85rem;
+      color: #3e5670;
+      line-height: 1.45;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .tag {
+      background: #f0f4fa;
+      padding: 4px 10px;
+      border-radius: 30px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #2b4b74;
+    }
+    .apply-hint {
+      font-size: 0.7rem;
+      text-align: center;
+      margin-top: 12px;
+      color: #8aa0b8;
+      letter-spacing: 0.3px;
+    }
 
-        /* Индивидуальные анимации для четырёх направлений (верх, низ, лево, право) */
-        .clone-top {
-            animation: cloneUpSpin 6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        }
+    /* Адаптивность 3D */
+    @media (max-width: 800px) {
+      .vacancy-card {
+        --w: 15rem;
+      }
+      .scene {
+        perspective: 28em;
+      }
+    }
+    @media (max-width: 550px) {
+      .vacancy-card {
+        --w: 13rem;
+        padding: 1rem;
+      }
+      .card-title {
+        font-size: 1rem;
+      }
+    }
 
-        .clone-bottom {
-            animation: cloneDownSpin 6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        }
-
-        .clone-left {
-            animation: cloneLeftSpin 6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        }
-
-        .clone-right {
-            animation: cloneRightSpin 6s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-        }
-
-        /* АНИМАЦИЯ ДЛЯ ЦЕНТРАЛЬНОГО КРУГА: плавное исчезновение / появление */
-        @keyframes centralDance {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-                border-radius: 50%;
-            }
-            12% {
-                transform: translate(-50%, -50%) scale(0.4);
-                opacity: 0.8;
-            }
-            20% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 0;
-            }
-            80% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 0;
-            }
-            92% {
-                transform: translate(-50%, -50%) scale(0.6);
-                opacity: 0.7;
-                border-radius: 50%;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-                border-radius: 50%;
-            }
-        }
-
-        /* -------------------------------------------------------------
-           АНИМАЦИЯ ДЛЯ ВЕРХНЕГО КЛОНА (вверх → квадрат → закрутка → возврат в круг)
-        ------------------------------------------------------------- */
-        @keyframes cloneUpSpin {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-                border-radius: 50%;
-                opacity: 0;
-                width: 50px;
-                height: 50px;
-                background: radial-gradient(circle at 30% 30%, #ffa07a, #ff4757);
-            }
-            5% {
-                opacity: 1;
-                transform: translate(-50%, -50%) rotate(0deg);
-                border-radius: 50%;
-            }
-            15% {
-                transform: translate(-50%, calc(-50% - 70px)) rotate(0deg);
-                border-radius: 50%;
-                opacity: 1;
-            }
-            /* начало трансформации в квадрат */
-            28% {
-                transform: translate(-50%, calc(-50% - 70px)) rotate(0deg);
-                border-radius: 12%;
-                background: radial-gradient(circle at 40% 40%, #ff8866, #ff3344);
-                box-shadow: 0 0 0 2px gold;
-            }
-            35% {
-                transform: translate(-50%, calc(-50% - 70px)) rotate(0deg);
-                border-radius: 0%;
-                background: #ff4466;
-                box-shadow: 0 0 0 3px #ffcc88;
-            }
-            /* квадрат начинает закручиваться (спин) */
-            50% {
-                transform: translate(-50%, calc(-50% - 70px)) rotate(360deg);
-                border-radius: 0%;
-                background: #ff4466;
-                width: 48px;
-                height: 48px;
-            }
-            68% {
-                transform: translate(-50%, calc(-50% - 70px)) rotate(720deg);
-                border-radius: 0%;
-                background: #ff5e7c;
-            }
-            /* ЗАКРУЧИВАНИЕ В СТАРТОВЫЙ КРУГ → возврат в центр + круглый вид */
-            78% {
-                transform: translate(-50%, -50%) rotate(720deg);
-                border-radius: 50%;
-                background: radial-gradient(circle at 30% 30%, #ff8a6c, #ff4055);
-                opacity: 1;
-                width: 50px;
-                height: 50px;
-            }
-            88% {
-                transform: translate(-50%, -50%) rotate(720deg) scale(0.6);
-                border-radius: 50%;
-                opacity: 0.7;
-                background: #ff5e7c;
-            }
-            96% {
-                transform: translate(-50%, -50%) rotate(720deg) scale(0.2);
-                opacity: 0;
-                border-radius: 50%;
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(720deg);
-                opacity: 0;
-                border-radius: 50%;
-            }
-        }
-
-        /* НИЖНИЙ КЛОН — аналогично, но сдвиг вниз */
-        @keyframes cloneDownSpin {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-                border-radius: 50%;
-                opacity: 0;
-                width: 50px;
-                height: 50px;
-                background: radial-gradient(circle at 30% 30%, #ffa07a, #ff4757);
-            }
-            5% {
-                opacity: 1;
-                transform: translate(-50%, -50%) rotate(0deg);
-                border-radius: 50%;
-            }
-            15% {
-                transform: translate(-50%, calc(-50% + 70px)) rotate(0deg);
-                border-radius: 50%;
-                opacity: 1;
-            }
-            28% {
-                transform: translate(-50%, calc(-50% + 70px)) rotate(0deg);
-                border-radius: 12%;
-                background: radial-gradient(circle at 40% 40%, #ff8866, #ff3344);
-            }
-            35% {
-                transform: translate(-50%, calc(-50% + 70px)) rotate(0deg);
-                border-radius: 0%;
-                background: #ff4466;
-                box-shadow: 0 0 0 3px #ffcc88;
-            }
-            50% {
-                transform: translate(-50%, calc(-50% + 70px)) rotate(360deg);
-                border-radius: 0%;
-                background: #ff4466;
-            }
-            68% {
-                transform: translate(-50%, calc(-50% + 70px)) rotate(720deg);
-                border-radius: 0%;
-                background: #ff5e7c;
-            }
-            78% {
-                transform: translate(-50%, -50%) rotate(720deg);
-                border-radius: 50%;
-                background: radial-gradient(circle at 30% 30%, #ff8a6c, #ff4055);
-                opacity: 1;
-            }
-            88% {
-                transform: translate(-50%, -50%) rotate(720deg) scale(0.6);
-                border-radius: 50%;
-                opacity: 0.7;
-            }
-            96% {
-                transform: translate(-50%, -50%) rotate(720deg) scale(0.2);
-                opacity: 0;
-                border-radius: 50%;
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(720deg);
-                opacity: 0;
-                border-radius: 50%;
-            }
-        }
-
-        /* ЛЕВЫЙ КЛОН */
-        @keyframes cloneLeftSpin {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-                border-radius: 50%;
-                opacity: 0;
-                background: radial-gradient(circle at 30% 30%, #ffa07a, #ff4757);
-            }
-            5% {
-                opacity: 1;
-                transform: translate(-50%, -50%) rotate(0deg);
-                border-radius: 50%;
-            }
-            15% {
-                transform: translate(calc(-50% - 70px), -50%) rotate(0deg);
-                border-radius: 50%;
-                opacity: 1;
-            }
-            28% {
-                transform: translate(calc(-50% - 70px), -50%) rotate(0deg);
-                border-radius: 12%;
-                background: radial-gradient(circle at 40% 40%, #ff8866, #ff3344);
-            }
-            35% {
-                transform: translate(calc(-50% - 70px), -50%) rotate(0deg);
-                border-radius: 0%;
-                background: #ff4466;
-                box-shadow: 0 0 0 3px #ffcc88;
-            }
-            50% {
-                transform: translate(calc(-50% - 70px), -50%) rotate(360deg);
-                border-radius: 0%;
-                background: #ff4466;
-            }
-            68% {
-                transform: translate(calc(-50% - 70px), -50%) rotate(720deg);
-                border-radius: 0%;
-                background: #ff5e7c;
-            }
-            78% {
-                transform: translate(-50%, -50%) rotate(720deg);
-                border-radius: 50%;
-                background: radial-gradient(circle at 30% 30%, #ff8a6c, #ff4055);
-                opacity: 1;
-            }
-            88% {
-                transform: translate(-50%, -50%) rotate(720deg) scale(0.6);
-                border-radius: 50%;
-                opacity: 0.7;
-            }
-            96% {
-                transform: translate(-50%, -50%) rotate(720deg) scale(0.2);
-                opacity: 0;
-                border-radius: 50%;
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(720deg);
-                opacity: 0;
-                border-radius: 50%;
-            }
-        }
-
-        /* ПРАВЫЙ КЛОН */
-        @keyframes cloneRightSpin {
-            0% {
-                transform: translate(-50%, -50%) rotate(0deg);
-                border-radius: 50%;
-                opacity: 0;
-                background: radial-gradient(circle at 30% 30%, #ffa07a, #ff4757);
-            }
-            5% {
-                opacity: 1;
-                transform: translate(-50%, -50%) rotate(0deg);
-                border-radius: 50%;
-            }
-            15% {
-                transform: translate(calc(-50% + 70px), -50%) rotate(0deg);
-                border-radius: 50%;
-                opacity: 1;
-            }
-            28% {
-                transform: translate(calc(-50% + 70px), -50%) rotate(0deg);
-                border-radius: 12%;
-                background: radial-gradient(circle at 40% 40%, #ff8866, #ff3344);
-            }
-            35% {
-                transform: translate(calc(-50% + 70px), -50%) rotate(0deg);
-                border-radius: 0%;
-                background: #ff4466;
-                box-shadow: 0 0 0 3px #ffcc88;
-            }
-            50% {
-                transform: translate(calc(-50% + 70px), -50%) rotate(360deg);
-                border-radius: 0%;
-                background: #ff4466;
-            }
-            68% {
-                transform: translate(calc(-50% + 70px), -50%) rotate(720deg);
-                border-radius: 0%;
-                background: #ff5e7c;
-            }
-            78% {
-                transform: translate(-50%, -50%) rotate(720deg);
-                border-radius: 50%;
-                background: radial-gradient(circle at 30% 30%, #ff8a6c, #ff4055);
-                opacity: 1;
-            }
-            88% {
-                transform: translate(-50%, -50%) rotate(720deg) scale(0.6);
-                border-radius: 50%;
-                opacity: 0.7;
-            }
-            96% {
-                transform: translate(-50%, -50%) rotate(720deg) scale(0.2);
-                opacity: 0;
-                border-radius: 50%;
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(720deg);
-                opacity: 0;
-                border-radius: 50%;
-            }
-        }
-
-        /* Вспомогательный декоративный текст */
-        .info {
-            text-align: center;
-            margin-top: 35px;
-            color: #eef4ff;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.4);
-            background: rgba(0,0,0,0.3);
-            display: inline-block;
-            padding: 6px 18px;
-            border-radius: 60px;
-            backdrop-filter: blur(5px);
-            font-size: 0.9rem;
-        }
-
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 28px;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: #ccddee;
-            background: rgba(0,0,0,0.3);
-            border-radius: 40px;
-            padding: 8px 20px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-            backdrop-filter: blur(4px);
-        }
-
-        .legend span {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .legend i {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background: #ff5e7c;
-            border-radius: 50%;
-            box-shadow: 0 0 0 1px gold;
-        }
-
-        .legend i.square {
-            border-radius: 2px;
-            background: #ff4466;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            opacity: 0.7;
-        }
-    </style>
+    /* Модалка отклика (как в оригинале) */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      backdrop-filter: blur(6px);
+    }
+    .modal-content {
+      background: white;
+      max-width: 500px;
+      width: 90%;
+      border-radius: 36px;
+      padding: 32px 28px;
+      box-shadow: 0 40px 60px rgba(0,0,0,0.2);
+      animation: fadeUp 0.25s ease;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-content h3 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .modal-job-name {
+      color: #1e5b9e;
+      font-weight: 500;
+      margin-bottom: 20px;
+      border-left: 3px solid #1e5b9e;
+      padding-left: 12px;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #8f9fb2;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #1e2f3f;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #dce3ec;
+      border-radius: 20px;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #1e5b9e;
+      box-shadow: 0 0 0 3px rgba(30,91,158,0.1);
+    }
+    .submit-response {
+      background: #1e5b9e;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 14px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .status-message {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 15px;
+      color: #2e7d32;
+    }
+    .footer {
+      background: #0b1c2c;
+      color: #b7c9e2;
+      padding: 32px 0 24px;
+      text-align: center;
+      margin-top: 30px;
+    }
+    .no-results-msg {
+      text-align: center;
+      padding: 40px;
+      font-size: 1.2rem;
+      background: #fff0e6;
+      border-radius: 48px;
+      width: 80%;
+      margin: 20px auto;
+    }
+  </style>
 </head>
 <body>
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <div class="animation-scene">
-        <!-- центральный круг: уменьшается и даёт "клоны" -->
-        <div class="shape central-circle"></div>
 
-        <!-- 4 клона-кружочка, которые станут квадратами и закрутятся -->
-        <div class="shape clone clone-top"></div>
-        <div class="shape clone clone-bottom"></div>
-        <div class="shape clone clone-left"></div>
-        <div class="shape clone clone-right"></div>
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <h1>Вектор·Тех</h1>
+      <span>3D выбор карьеры</span>
     </div>
+    <div class="nav-links">
+      <a href="#">Главная</a>
+      <a href="#">О компании</a>
+      <a href="#">Вакансии</a>
+      <a href="#">Контакты</a>
+    </div>
+  </div>
+</header>
 
-    <div class="info">
-        ✨ ЦЕНТР УМЕНЬШАЕТСЯ → 4 КЛОНА ПО СТОРОНАМ → КВАДРАТ → ЗАКРУТКА ВОЗВРАЩАЕТ В КРУГ ✨
-    </div>
-    <div class="legend">
-        <span><i></i> центральный круг (уменьшается)</span>
-        <span><i></i> → клоны 40px (круги)</span>
-        <span><i class="square"></i> трансформация в квадрат</span>
-        <span>🌀 закручивание → стартовый круг</span>
-    </div>
-    <footer>🔄 CSS-анимация | без JS | бесконечный цикл: сжатие → клонирование → квадрат + спин → возврат к кругу</footer>
+<section class="hero">
+  <div class="hero-badge">🌀 3D-карусель возможностей</div>
+  <h2>Вращайся и выбирай</h2>
+  <p>Интерактивная 3D-галерея вакансий. Нажми на любую карточку — откликнись за минуту</p>
+</section>
+
+<div class="search-container">
+  <div class="search-wrapper">
+    <input type="text" id="searchInput" placeholder="Поиск: разработчик, дизайнер, аналитик...">
+    <button id="searchBtn">Найти вакансию</button>
+    <div class="result-count" id="resultCount">всего вакансий: 9</div>
+  </div>
 </div>
 
-<!-- 
-    Описание анимации (чистый CSS, соответствует заданию):
-    1. Круг в центре уменьшается (масштабируется до 0) — имитирует исчезновение и порождение "клонов".
-    2. Одновременно 4 кружка (клоны) "вырастают" из центра и расходятся на 4 стороны (расстояние ~70px, 
-       размер каждого ~50px, стилизованы под "40px область" — близко к требуемому размеру, изящно выглядят).
-    3. Каждый из четырёх кружков трансформируется в квадрат (border-radius: 50% → 0%) с гладкой сменой формы.
-    4. Затем квадраты начинают закручиваться (вращение 720 градусов) и одновременно возвращаются в центр, 
-       превращаясь обратно в круг (закручивание в стартовый круг). 
-    5. Центральный круг в конце анимации снова проявляется — всё зациклено.
-    Все метаморфозы без единой строки JavaScript, только keyframes + абсолютное позиционирование.
--->
+<div class="scene">
+  <div class="a3d" id="carouselRoot"></div>
+</div>
+
+<footer class="footer">
+  <p>© 2025 Центр инноваций "Вектор·Тех" — 3D выбор вакансий</p>
+  <p style="margin-top: 10px; font-size: 0.75rem;">Клик по карточке → форма отклика. Вращение автоматическое, но можно задержать курсор</p>
+</footer>
+
+<div id="applyModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" id="closeModalBtn">&times;</span>
+    <h3>Откликнуться</h3>
+    <div class="modal-job-name" id="modalJobTitle"></div>
+    <form id="applyForm">
+      <div class="form-group">
+        <label>Ваше имя *</label>
+        <input type="text" id="applicantName" required placeholder="Анна Смирнова">
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" id="applicantEmail" required placeholder="anna@example.com">
+      </div>
+      <div class="form-group">
+        <label>Телефон</label>
+        <input type="text" id="applicantPhone" placeholder="+7 999 123-45-67">
+      </div>
+      <div class="form-group">
+        <label>Сопроводительное</label>
+        <textarea rows="3" id="applicantMessage" placeholder="Почему вы подходите?"></textarea>
+      </div>
+      <button type="submit" class="submit-response">Отправить отклик</button>
+      <div id="formStatus" class="status-message"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ---------- БАЗА ВАКАНСИЙ (как в оригинальной странице) ----------
+  const fullJobsList = [
+    { id: 1, title: "Frontend-разработчик (React)", department: "IT", location: "Москва / удалённо", salary: "от 220 000 ₽", desc: "Разработка SPA, TypeScript, Next.js. Гибкий старт.", tags: ["React", "TS", "Next.js"] },
+    { id: 2, title: "Backend-разработчик Python", department: "IT", location: "СПб / гибрид", salary: "от 240 000 ₽", desc: "API, микросервисы, PostgreSQL, Docker. Middle+", tags: ["Python", "FastAPI", "Postgres"] },
+    { id: 3, title: "Product Manager (B2B)", department: "Маркетинг", location: "Москва", salary: "от 260 000 ₽", desc: "Продуктовая стратегия, аналитика, Agile.", tags: ["Product", "B2B", "Agile"] },
+    { id: 4, title: "Менеджер по продажам (IT-решения)", department: "Продажи", location: "Удалённо", salary: "150 000 + KPI", desc: "B2B продажи, CRM, переговоры.", tags: ["B2B", "CRM"] },
+    { id: 5, title: "Data Analyst (BI)", department: "Аналитика", location: "Москва", salary: "от 200 000 ₽", desc: "Дашборды, SQL, Python, DWH.", tags: ["SQL", "Tableau", "Python"] },
+    { id: 6, title: "SMM-менеджер", department: "Маркетинг", location: "Удалённо", salary: "от 120 000 ₽", desc: "Соцсети, контент, аналитика. Креативность.", tags: ["SMM", "Таргет"] },
+    { id: 7, title: "Fullstack-разработчик (Node+React)", department: "IT", location: "Москва", salary: "от 270 000 ₽", desc: "Клиент-сервер, MongoDB/PostgreSQL.", tags: ["Node.js", "React", "MongoDB"] },
+    { id: 8, title: "Аккаунт-менеджер (IT-услуги)", department: "Продажи", location: "СПб", salary: "до 180 000 ₽", desc: "Ведение клиентов, КП, CRM.", tags: ["Коммуникабельность"] },
+    { id: 9, title: "Системный аналитик", department: "Аналитика", location: "Москва", salary: "от 230 000 ₽", desc: "Сбор требований, UML, BPMN, API.", tags: ["UML", "BPMN", "SQL"] }
+  ];
+
+  let currentFilteredJobs = [...fullJobsList];
+  const carouselRoot = document.getElementById('carouselRoot');
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+  const resultCountSpan = document.getElementById('resultCount');
+
+  // Модальные элементы
+  const modal = document.getElementById('applyModal');
+  const modalJobTitleSpan = document.getElementById('modalJobTitle');
+  const closeModalBtn = document.getElementById('closeModalBtn');
+  const applyForm = document.getElementById('applyForm');
+  const formStatus = document.getElementById('formStatus');
+  let currentJobForApply = '';
+
+  // Функция обновления 3D-карусели
+  function renderCarousel(jobsArray) {
+    carouselRoot.innerHTML = '';
+    const total = jobsArray.length;
+    if (total === 0) {
+      // Показать сообщение об отсутствии результатов внутри сцены
+      const emptyDiv = document.createElement('div');
+      emptyDiv.className = 'no-results-msg';
+      emptyDiv.innerText = '😔 По вашему запросу вакансий не найдено. Измените поиск.';
+      emptyDiv.style.position = 'relative';
+      emptyDiv.style.zIndex = '10';
+      emptyDiv.style.background = '#fff0e6';
+      carouselRoot.appendChild(emptyDiv);
+      carouselRoot.style.animation = 'none';
+      resultCountSpan.innerText = 'найдено: 0';
+      return;
+    }
+    // Включаем вращение, если были пустые результаты
+    carouselRoot.style.animation = 'rotateCarousel 40s linear infinite';
+    carouselRoot.style.setProperty('--n', total);
+    const fragment = document.createDocumentFragment();
+
+    jobsArray.forEach((job, idx) => {
+      const card = document.createElement('div');
+      card.className = 'vacancy-card';
+      card.setAttribute('data-id', job.id);
+      card.setAttribute('data-title', job.title);
+      card.style.setProperty('--i', idx);
+      // Заполняем содержимое
+      card.innerHTML = `
+        <div class="card-title">${escapeHtml(job.title)}</div>
+        <div class="card-meta">
+          <span>📍 ${escapeHtml(job.location)}</span>
+          <span>🏢 ${escapeHtml(job.department)}</span>
+        </div>
+        <div class="card-salary">💰 ${escapeHtml(job.salary)}</div>
+        <div class="card-desc">${escapeHtml(job.desc)}</div>
+        <div class="card-tags">
+          ${job.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
+        </div>
+        <div class="apply-hint">✨ кликни, чтобы откликнуться</div>
+      `;
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(job.title);
+      });
+      fragment.appendChild(card);
+    });
+    carouselRoot.appendChild(fragment);
+    resultCountSpan.innerText = `найдено: ${total}`;
+  }
+
+  // Фильтрация по поисковому запросу (название, описание, теги, отдел)
+  function filterJobs() {
+    const query = searchInput.value.trim().toLowerCase();
+    if (query === "") {
+      currentFilteredJobs = [...fullJobsList];
+    } else {
+      currentFilteredJobs = fullJobsList.filter(job =>
+        job.title.toLowerCase().includes(query) ||
+        job.desc.toLowerCase().includes(query) ||
+        job.department.toLowerCase().includes(query) ||
+        job.tags.some(tag => tag.toLowerCase().includes(query)) ||
+        job.location.toLowerCase().includes(query)
+      );
+    }
+    renderCarousel(currentFilteredJobs);
+  }
+
+  // Обработчики поиска + кнопка
+  searchBtn.addEventListener('click', () => filterJobs());
+  searchInput.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') filterJobs();
+  });
+
+  // --- Модалка формы отклика (как в исходной вакансионной странице) ---
+  function openModal(jobTitle) {
+    currentJobForApply = jobTitle;
+    modalJobTitleSpan.textContent = jobTitle;
+    modal.style.display = 'flex';
+    formStatus.innerHTML = '';
+    document.getElementById('applicantName').value = '';
+    document.getElementById('applicantEmail').value = '';
+    document.getElementById('applicantPhone').value = '';
+    document.getElementById('applicantMessage').value = '';
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    currentJobForApply = '';
+  }
+
+  applyForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('applicantName').value.trim();
+    const email = document.getElementById('applicantEmail').value.trim();
+    const phone = document.getElementById('applicantPhone').value.trim();
+    const message = document.getElementById('applicantMessage').value.trim();
+
+    if (!name || !email) {
+      formStatus.innerHTML = '❌ Укажите имя и email.';
+      formStatus.style.color = '#c62828';
+      return;
+    }
+    if (!email.includes('@') || !email.includes('.')) {
+      formStatus.innerHTML = '❌ Введите корректный email.';
+      formStatus.style.color = '#c62828';
+      return;
+    }
+    formStatus.innerHTML = '⏳ Отправка отклика...';
+    formStatus.style.color = '#1f6392';
+    setTimeout(() => {
+      formStatus.innerHTML = `✅ Отклик на "${currentJobForApply}" отправлен! Мы свяжемся с вами.`;
+      formStatus.style.color = '#2e7d32';
+      setTimeout(() => {
+        closeModal();
+      }, 1800);
+    }, 700);
+  });
+
+  closeModalBtn.addEventListener('click', closeModal);
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  // вспомогательная функция для защиты от XSS
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  // начальный рендер
+  renderCarousel(fullJobsList);
+
+  // Доп. эффект: при потере фокуса, если мышь не двигается, вращение сохраняется.
+  // небольшой трюк для паузы при наведении на сцену (опционально)
+  const sceneElem = document.querySelector('.scene');
+  let carouselAnim = true;
+  sceneElem.addEventListener('mouseenter', () => {
+    if (carouselRoot) carouselRoot.style.animationPlayState = 'paused';
+  });
+  sceneElem.addEventListener('mouseleave', () => {
+    if (carouselRoot) carouselRoot.style.animationPlayState = 'running';
+  });
+</script>
 </body>
 </html>
