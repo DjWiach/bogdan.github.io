@@ -1,0 +1,973 @@
+/* --- Подтверждение возраста --- */
+.age-overlay {
+    display: none; /* Скрываем по умолчанию, скрипт включит display:flex */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 20, 30, 0.95); /* Темный фон с высокой прозрачностью */
+    backdrop-filter: blur(3px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.age-modal {
+    background-color: #1A2230;
+    padding: 50px 40px;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 420px;
+    border: 1px solid #B58900;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: modalPop 0.5s ease-out;
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.age-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #0F141E;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 25px;
+}
+
+.age-icon i {
+    font-size: 2.5rem;
+    color: #B58900;
+}
+
+.age-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: #E0E5EC;
+    margin: 0 0 15px;
+}
+
+.age-text {
+    color: #A7B0C2;
+    line-height: 1.6;
+    margin: 0 0 30px;
+    font-size: 1rem;
+}
+
+.age-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.age-btn {
+    padding: 15px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.age-btn--yes {
+    background-color: #B58900;
+    color: #1A2230;
+}
+
+.age-btn--yes:hover {
+    background-color: #C49800;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(181, 137, 0, 0.3);
+}
+
+.age-btn--no {
+    background: transparent;
+    color: #E0E5EC;
+    border: 2px solid #B58900;
+}
+
+.age-btn--no:hover {
+    background-color: #B58900;
+    color: #1A2230;
+    transform: translateY(-3px);
+}
+
+.age-note {
+    font-size: 0.8rem;
+    color: #666B79;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .age-modal {
+        padding: 40px 25px;
+    }
+    .age-title {
+        font-size: 1.5rem;
+    }
+}
+
+/* --- Уведомление о куки --- */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #0F141E, #1A2230);
+    color: #E0E5EC;
+    z-index: 10000; /* Выше, чем у модальных окон */
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+    font-size: 0.95rem;
+}
+
+.cookie-banner__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.cookie-banner__text {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 200px;
+}
+
+.cookie-banner__icon {
+    font-size: 1.4rem;
+    color: #B58900;
+    flex-shrink: 0;
+}
+
+.cookie-banner__link {
+    color: #B58900;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.cookie-banner__link:hover {
+    color: #C49800;
+}
+
+.cookie-banner__btn {
+    background-color: #B58900;
+    color: #1A2230;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.cookie-banner__btn:hover {
+    background-color: #C49800;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(181, 137, 0, 0.3);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 600px) {
+    .cookie-banner__content {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+    
+    .cookie-banner__btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/* --- Обнуление стилей для списка --- */
+.nav__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* --- Основные цвета --- */
+:root {
+    --gold: #B58900;
+    --light-text: #E0E5EC;
+    --bg-header: #0F141E;
+}
+
+/* --- Базовые настройки --- */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0F141E, #1A2230);
+    color: var(--light-text);
+}
+
+/* --- Шапка --- */
+.header {
+    padding: 20px 0;
+    background-color: var(--bg-header);
+    border-bottom: 1px solid rgba(181, 137, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: flex-start; /* Выравниваем по верхнему краю, чтобы многострочное меню смотрелось ровно */
+    gap: 20px; /* Заменяем justify-content на gap для контроля отступов */
+}
+
+/* Логотип */
+.header__logo {
+    flex-shrink: 0; /* Запрещаем логотипу сжиматься */
+    height: 80px; 
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #B58900;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    height: 100%;
+    justify-content: center;
+}
+
+.logo-img {
+    width: 10%;
+    height: auto;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.logo-text {
+    line-height: 1.1;
+    text-transform: capitalize;
+}
+
+/* Навигация */
+.header__nav {
+    /* Меню занимает всё оставшееся пространство */
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.nav__list {
+    /* Ключевые свойства для адаптивности */
+    display: flex;
+    flex-wrap: wrap; /* Разрешаем перенос пунктов на новые строки */
+    gap: 20px; /* Расстояние между пунктами (вместо margin) */
+    justify-content: flex-end; /* Прижимаем меню к правому краю */
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav__link {
+    font-size: 1rem;
+    color: var(--light-text);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+    white-space: nowrap; /* Запрещаем разрывать слово */
+}
+
+.nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.nav__link:hover {
+    color: var(--gold);
+}
+.nav__link:hover::after {
+    width: 100%;
+}
+
+/* Кнопка "Войти" */
+.header__btn {
+    font-size: 1rem;
+    color: var(--gold);
+    background: transparent;
+    border: 2px solid var(--gold);
+    padding: 12px 28px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    flex-shrink: 0; /* Кнопка не сжимается */
+    margin-left: 20px; /* Отступ от меню */
+}
+
+.header__btn:hover {
+    background-color: var(--gold);
+    color: var(--bg-header);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(181, 137, 0, 0.3);
+}
+
+/* --- ИКОНКА БУРГЕРА (добавьте в HTML) --- */
+.header__hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: var(--gold);
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    flex-shrink: 0;
+}
+
+/* --- АДАПТИВНОСТЬ --- */
+
+/* Планшеты: просто уменьшаем отступы */
+@media (max-width: 1024px) {
+    .header__container { gap: 15px; }
+    .nav__list { gap: 15px; }
+    .nav__link { font-size: 0.95rem; }
+    .header__btn { padding: 10px 24px; }
+}
+
+/* Мобильные: прячем десктопное меню, показываем бургер */
+@media (max-width: 768px) {
+    .header__container {
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header__nav {
+        display: none; /* Полностью скрываем блок nav на мобильных */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-header);
+        border-bottom: 1px solid rgba(181, 137, 0, 0.2);
+        padding: 10px 0;
+    }
+
+    .nav__list {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        justify-content: flex-start;
+    }
+
+    .nav__link {
+        padding: 15px 20px;
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #252F42;
+    }
+    .nav__link:first-child { border-top: none; }
+
+    .header__btn {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+        border-top: 1px solid #252F42;
+    }
+
+    /* Показываем бургер */
+    .header__hamburger {
+        display: block;
+    }
+}
+/* --- Стили для оффера --- */
+/*.main-content {
+    padding: 0 0;
+    text-align: center;
+	justify-content: center;
+    min-height: 100vh;
+}*/
+/* --- Центральный оффер (Первый экран) --- */
+
+/* Родительский блок - центрирует всё */
+.hero {
+    width: 100%;
+    height: 100dvh;
+	background:	linear-gradient(135deg, #0F141E, #1A2230);
+	background-image: url(./img/card_bgnd_.jpg);
+	background-size: cover; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 ; /*20px*/
+    box-sizing: border-box;
+    z-index: 1;
+}
+/*
+.blured{
+	width: 100%;
+    height: 100%;
+	backdrop-filter: blur(10px) brightness(90%);
+}*/
+/* Контейнер - ограничивает ширину текста */
+.hero__container {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+/* Остальные стили (заголовок, текст, кнопка) остаются без изменений, 
+   так как text-align: center; на родителе .hero уже выровнял их текст */
+.hero__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 700;
+    color: #E0E5EC;
+    margin-top: 15px;
+    line-height: 1.1;
+	text-shadow: 2px 2px 0px #1A2230, /* Темная глубина */ 4px 4px 0px #0F141E, /* Еще глубже */ -1px -1px 0px #C49800, /* Светлый блик сверху-слева */ 1px 1px 0px #7D5E00;
+}
+
+.hero__subtitle {
+    font-family: 'Arial', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-style: normal;
+    font-weight: 300;
+    color: #B58900;
+    margin-top: 30px;
+    letter-spacing: 0.5px;
+}
+
+.hero__text {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #E0E5EC;
+    line-height: 1.7;
+    margin-top: 40px;
+    opacity: 0.9;
+}
+
+.hero__btn {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1A2230;
+    background-color: #B58900;
+    border: none;
+	margin-top: 40px;
+    padding: 25px 80px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(181, 137, 0, 0.4);
+    z-index: 2;
+}
+
+.hero__btn:hover {
+    background-color: #C49800;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(181, 137, 0, 0.5);
+}
+
+/* Эффект при наведении */
+.hero__btn:hover {
+    background-color: #C49800;
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(181, 137, 0, 0.5);
+}
+
+/* Активное нажатие */
+.hero__btn:active {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(181, 137, 0, 0.4);
+}
+
+/* Плавное появление элементов (опционально, для красоты) */
+.hero__title, .hero__subtitle, .hero__text, .hero__btn {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.hero__subtitle { animation-delay: 0.3s; }
+.hero__text { animation-delay: 0.6s; }
+.hero__btn { animation-delay: 0.9s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .hero__btn {
+        padding: 16px 40px;
+        font-size: 1rem;
+    }
+}
+
+
+/* --- Блок преимуществ --- */
+.advantages {
+	background-image:url('./img/card_bgnd.jpg') center/cover no-repeat fixed;
+    /*background-color: #1A2230;*/
+    padding: 80px 0;
+    color: #fff;
+}
+
+.advantages__container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+	
+}
+
+.advantages__title {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: #E0E5EC;
+    margin: 0 0 60px 0;
+    font-weight: 700;
+}
+
+/* Сетка 4 колонок */
+.advantages__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+/* Карточка */
+.advantages__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Иконки */
+.advantages__icon {
+    width: 80px;
+    height: 80px;
+    background-color: #0F141E; /* Темный фон для круга */
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.advantages__icon i {
+    font-size: 2.5rem;
+    color: #B58900; /* Золотой цвет иконки */
+}
+
+/* Эффект при наведении на иконку */
+.advantages__item:hover .advantages__icon {
+    background-color: #B58900;
+    transform: scale(1.1) rotate(10deg);
+}
+.advantages__item:hover .advantages__icon i {
+    color: #1A2230; /* Иконка темнеет при наведении */
+}
+
+/* Заголовки преимуществ */
+.advantages__card-title {
+	font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: #B58900;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Текст описания */
+.advantages__card-text {
+    font-size: 0.95rem;
+    color: #A7B0C2;
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .advantages__title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    .advantages__icon {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .advantages__icon i {
+        font-size: 2rem;
+    }
+}
+.feature-card {
+	display: flex; flex-direction: column; /* Ставим элементы друг под другом */ 
+	align-items: center; /* Центрируем по горизонтали */ 
+	justify-content: center; /* Центрируем по вертикали (если карточка имеет фиксированную высоту) */ 
+	text-align: center; /* Центрирует текстовые блоки (h3, p) */ 
+	gap: 20px; /* Отступ между иконкой и текстом */ 
+	min-height: 220px; /* Задает минимальную высоту, чтобы вертикальное выравнивание было заметно */
+  /*background-color: #1A2230; Цвет фона карточки для контраста */
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  /* Основные параметры рамки */
+  border: 2px solid #B58900;
+  /* Чтобы рамка не прилипала к краям, а создавала эффект "внутреннего отступа", 
+     можно использовать outline или вложенный блок. 
+     Вариант с outline-offset: */
+  outline: 2px solid #B58900;
+  outline-offset: -8px; /* Сдвигает рамку внутрь */
+  background: /* 1. Наложение затемняющего градиента (верхний слой) */ 
+  linear-gradient(rgba(15, 20, 30, 0.85), rgba(15, 20, 30, 0.85)), /* 2. Ваша фоновая картинка (нижний слой) */ 
+  #1A2230;
+  	border: 4px ridge #B58900;
+	box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.5), /* Темная тень (основная) */ 
+				4px 4px 10px rgba(0, 0, 0, 0.3); /* Дополнительная глубина */ 
+				/* 4. Внутреннее свечение (усиливает эффект объема) */ 
+  /* Плавная анимация при наведении */
+  transition: all 0.3s ease;
+}
+
+/* Состояния при наведении */
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(181, 137, 0, 0.2); /* Мягкая золотая тень */
+  border-color: #C49800; /* Рамка становится светлее */
+  outline-color: #C49800;
+}
+
+/* Иконка внутри карточки (наследует цвет из вашего оффера) */
+.feature-card-icon {
+  width: 64px;
+  height: 64px;
+  fill: #B58900;
+  margin-bottom: 20px;
+}
+
+/* --- Блок Галерея (Программы) --- 
+.gallery {
+    /*background: linear-gradient(180deg, #1A2230 0%, #252F42 100%);*/
+    padding: 100px 0;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Скрытый слой с золотым градиентным свечением под всей секцией */
+.gallery::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(181, 137, 0, 0.1) 0%, transparent 70%);
+    z-index: 0;
+}
+
+.gallery__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.gallery__title {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: #E0E5EC;
+    margin: 25px 0 60px 0;
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+}
+
+/* Сетка карточек */
+.gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Карточка */
+.gallery__card {
+    background-color: #1A2230;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+	/*дополнено*/
+	border: 4px ridge #B58900;
+	box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.5), /* Темная тень (основная) */ 
+				2px 2px 6px rgba(0, 0, 0, 0.3); /* Дополнительная глубина */ 
+				/* 4. Внутреннее свечение (усиливает эффект объема) */ 
+	border-radius: 20px; 
+	overflow: hidden; 
+	position: relative;
+}
+
+.gallery__card:hover {
+    transform: translateY(10px);
+	transform: scale(1.05);
+    box-shadow: 10px 30px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* Блок с изображением */
+.gallery__image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.gallery__image img {
+	height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.5s ease;
+	margin: 0 auto;
+}
+
+/* Эффект теплого свечения по краям фото */
+.gallery__glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: 15px 15px 0 0;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.15) 0%, transparent 50%);
+}
+
+/* Увеличение фото при наведении на карточку */
+.gallery__card:hover .gallery__image img {
+    /*transform: scale(1.2);*/
+}
+/* ... стили .gallery__card остаются прежними ... */
+
+/* Контейнер для текста внутри карточки */
+.gallery__card-body {
+    padding: 50px 25px 25px; /* Сверху 50px, по бокам и снизу меньше */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между блоками текста */
+    flex-grow: 1;
+}
+
+/* Название программы */
+.gallery__card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: #B58900;
+    margin: 0; /* Обнуляем внешний отступ, теперь работает padding родителя */
+    font-weight: 1200;
+    line-height: 1.2;
+	text-transform: uppercase;
+	text-align: center; 
+}
+
+/* Время и цена */
+.gallery__meta {
+    display: flex;
+    justify-content: space-between;
+    color: #E0E5EC;
+    font-size: 0.95rem;
+    margin: 0; /* Обнуляем отступ */
+    opacity: 0.9;
+}
+
+/* Кнопка */
+.gallery__btn {
+    margin: 20px 0 0 0; /* Отступ только сверху, чтобы кнопка не прилипала к цене */
+    padding: 14px 0;
+    font-size: 1rem;
+    color: #E0E5EC;
+    background: transparent;
+    border: 2px solid #B58900;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    align-self: center; /* Центрируем кнопку относительно текста */
+    width: 80%; /* Делаем кнопку чуть уже контента */
+}
+
+.gallery__btn:hover {
+    background-color: #B58900;
+    color: #1A2230;
+    transform: translateY(-2px);
+}
+
+/* Адаптивность (скорректирована под новые отступы) */
+@media (max-width: 768px) {
+    .gallery__card-body {
+        padding: 40px 20px 20px;
+    }
+    
+    .gallery__card-title {
+        font-size: 1.3rem;
+    }
+    
+    .gallery__btn {
+        width: 100%;
+    }
+}
+/* --- Модальное окно --- */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Затемнение фона */
+    backdrop-filter: blur(5px); /* Легкое размытие фона (опционально) */
+}
+
+/* Содержимое окна */
+.modal__content {
+    background-color: #1A2230;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #B58900;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    color: #E0E5EC;
+    animation: modalFade 0.4s ease-out;
+}
+
+/* Кнопка закрытия */
+.modal__close {
+    color: #B58900;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    transition: color 0.3s ease;
+}
+
+.modal__close:hover {
+    color: #E0E5EC;
+}
+
+/* Шапка модалки (картинка + текст) */
+.modal__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.modal__img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #B58900;
+    flex-shrink: 0;
+}
+
+.modal__meta {
+    justify-content: flex-start !important;
+    gap: 15px;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.modal__divider {
+    border: none;
+    border-top: 1px solid #252F42;
+    margin: 20px 0;
+}
+
+/* Текст описания */
+#modal-desc {
+    color: #A7B0C2;
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+/* Анимация появления */
+@keyframes modalFade {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* премиальный массаж на темном фоне золотыми буквами с эффектом глубины
+на все рамки эффект  глубина
+оффер на видео фоне
+
+*/

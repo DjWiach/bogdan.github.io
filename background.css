@@ -1,0 +1,105 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    color: #e0e0e0;
+	position: relative; 
+	overflow-x: hidden;
+}
+
+html { scroll-behavior: smooth; }
+/* Ровный градиент фона */
+body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #0F141E, #1A2230); z-index: -1; }
+
+/* Слой с множеством бликов */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    
+    /* 
+       Множественные фоны. 
+       Каждая пара значений — это отдельный блик: 
+       сначала цвет (радиальный градиент), затем его позиция и размер.
+    */
+    background: 
+        /* Блик 1 */
+        radial-gradient(circle, rgba(255, 215, 0, 0.25) 0%, transparent 40%) 10% 20% / 3vw 3vw no-repeat,
+        /* Блик 2 */
+        radial-gradient(circle, rgba(255, 215, 0, 0.18) 0%, transparent 35%) 85% 15% / 2.5vw 2.5vw no-repeat,
+        /* Блик 3 */
+        radial-gradient(circle, rgba(255, 215, 0, 0.22) 0%, transparent 45%) 40% 60% / 4vw 4vw no-repeat,
+        /* Блик 4 */
+        radial-gradient(circle, rgba(255, 215, 0, 0.15) 0%, transparent 30%) 70% 80% / 2vw 2vw no-repeat,
+        /* Блик 5 */
+        radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 40%) 20% 75% / 3.5vw 3.5vw no-repeat,
+        /* Блик 6 */
+        radial-gradient(circle, rgba(255, 215, 0, 0.12) 0%, transparent 25%) 90% 50% / 1.5vw 1.5vw no-repeat;
+        
+    animation: drift 40s linear infinite;
+}
+
+/* Дополнительный слой для эффекта параллакса (блики движутся с разной скоростью) */
+body {
+    animation: slow-drift 60s linear infinite;
+}
+
+/* Контент */
+.content-wrapper {
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Основная анимация движения */
+@keyframes drift {
+    0% {
+        background-position: 
+            15% 25%,
+            80% 10%,
+            35% 55%,
+            65% 75%,
+            15% 70%,
+            85% 45%;
+    }
+    100% {
+        background-position: 
+            20% 30%,
+            90% 20%,
+            45% 65%,
+            75% 85%,
+            25% 80%,
+            95% 55%;
+    }
+}
+
+/* Медленная анимация для самого body, чтобы добавить глубины */
+@keyframes slow-drift {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 5% 5%;
+    }
+}
+
+/* Стили для текста */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.6);
+}
