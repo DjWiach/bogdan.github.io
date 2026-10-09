@@ -1,80 +1,61 @@
+<!--https://djwiach.github.io/bogdan.github.io/ --!>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 1. Основной favicon (старый надежный способ) --> 
+	<link rel="icon" type="image/x-icon" href="./img/favicon.ico"> 
+	<!-- 2. Для современных браузеров (PNG) --> 
+	<link rel="icon" type="image/png" href="./img/favicon.png" sizes="32x32"> 
+	<!-- 3. Для мобильных устройств (Apple/iOS) --> 
+	<link rel="apple-touch-icon" href="./img/favicon.png"> 
+	<!-- 4. Для Windows (плитки) --> 
+	<meta name="msapplication-TileColor" content="#1A2230"> 
+	<meta name="msapplication-TileImage" href="./img/favicon.png">
     <title>Любовь в руках</title>
-    <link rel="stylesheet" href="background.css">
+
     <title>Шапка сайта</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Подключение строгого шрифта с засечками -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-	<link rel="stylesheet" href="header.css">
-	<link rel="stylesheet" href="form.css">
+	<link rel="stylesheet" href="background_css.css">
+	<link rel="stylesheet" href="header_css.css">
+	<link rel="stylesheet" href="main_css.css">
+	<link rel="stylesheet" href="form_css.css">
+	<link rel="stylesheet" href="footer_css.css">
 	<!-- Стили Swiper --> 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" /> 
 	<!-- Скрипт Swiper (лучше ставить перед закрывающим </body>) --> 
 	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 	<script src="https://unpkg.com/inputmask@5.0.7/dist/inputmask.js"></script>
-	<script src="main.js"></script>
-	<script src="age.js"></script>
-	<script src="form.js"></script>
+
 </head>
 <body>
 <!-- Блок подтверждения возраста -->
+<!-- Оставьте только это -->
 <div id="age-verify-overlay" class="age-overlay">
     <div class="age-modal">
-        <div class="age-icon">
-            <i class="fa-solid fa-id-card"></i>
-        </div>
+        <div class="age-icon"><i class="fa-solid fa-id-card"></i></div>
         <h2 class="age-title">Вам уже есть 18 лет?</h2>
-        <p class="age-text">Содержимое этого сайта предназначено только для совершеннолетних пользователей. Пожалуйста, подтвердите ваш возраст.</p>
-        
+        <p class="age-text">Содержимое этого сайта предназначено только для совершеннолетних пользователей.</p>
         <div class="age-buttons">
-            <button id="age-yes" class="age-btn age-btn--yes">Да, мне есть 18 лет</button>
-            <button id="age-no" class="age-btn age-btn--no">Нет, мне нет 18 лет</button>
+            <button id="age-yes" class="age-btn age-btn--yes">Да</button>
+            <button id="age-no" class="age-btn age-btn--no">Нет</button>
         </div>
-        
-        <p class="age-note">Нажимая «Да», вы подтверждаете, что достигли совершеннолетия.</p>
+		<p class="age-note"><small> Нажимая «Да», вы подтверждаете, что достигли совершеннолетия.</small> </p>
+        <p class="age-note"><small><small>*Мы используем файлы cookie для улучшения работы сайта, анализа трафика и персонализации контента. Используя наш сайт, вы соглашаетесь с нашей </small></small><br/> 
+		<a href="./police.html" class="police_text_link"><small><small>политикой конфиденциальности</small></small></a>.</p> 
+		</div>     
     </div>
-</div>
-<!-- Уведомление о куки -->
-<div id="cookie-consent-banner" class="cookie-banner">
-    <div class="cookie-banner__content">
-        <div class="cookie-banner__text">
-            <i class="fa-solid fa-cookie-bite cookie-banner__icon"></i>
-            <p>Мы используем файлы cookie для улучшения работы сайта, анализа трафика и персонализации контента. Используя наш сайт, вы соглашаетесь с нашей <a href="#" class="cookie-banner__link">Политикой конфиденциальности</a>.</p>
-        </div>
-        <button id="cookie-consent-btn" class="cookie-banner__btn">Принять</button>
-    </div>
-</div>
-<header class="header">
-        <div class="header__container">
-            <!-- Логотип слева -->		
-            <div class="header__logo">
-    <a href="/" class="logo-link">
-        <img src="./img/logosteel.png" alt="Логотип" class="logo-img">_
-         <!--<span class="logo-text">Любовь в руках</span>-->
-    </a>
-</div>
-    <!-- Кнопка гамбургера -->
-    <button class="header__hamburger" id="hamburger">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-            <!-- Меню и кнопка справа -->
-            <nav class="header__nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#advantages" class="nav__link">О нас</a></li>
-                    <li class="nav__item"><a href="#gallery" class="nav__link">Программы</a></li>
-                    <li class="nav__item"><a href="#" class="nav__link">Мастерицы</a></li>
-                    <li class="nav__item"><a href="#" class="nav__link">Акции</a></li>
-                </ul>
-                <button class="header__btn send_btn">Записаться</button>
-            </nav>
-        </div>
-    </header>
+
+
+<!--<header class="header">-->
+<div id="main-header"></div>
+ <!--   </header>-->
 
     <!-- Центральный оффер -->
 	<!--class="main-content"-->
@@ -82,19 +63,135 @@
         <section class="hero">
 			<div class="hero__container">
 				<div class="blured">
-					<h1 class="hero__title">Искусство прикосновений</h1>
+					<h1 class="hero__title">Премиальный массаж</h1>
 					<p class="hero__subtitle">Гарантия приватности</p>
 					<p class="hero__text">
-						Место, где время принадлежит только тебе. <br>
-						Эксклюзивный эротический массаж в центре Пскова.
+						ВАШЕ ТЕЛО, НАША ЗАБОТА <br>
+						ИСКУССТВО ПРИКОСНОВЕНИЯ.
 					</p>
 					<button class="hero__btn send_btn">Попробовать</button>
 				</div>
 			</div>
 		</section>   
+		<section class="gallery" id="gallery">
+		 <!-- Основной контент -->
+			<div class="gallery__container">
+				<h2 class="gallery__title">Выберите свой ритуал</h2>
+				<div class="gallery__grid">
+
+					<!-- Карточка 1 -->
+					<div class="gallery__card full-bg-card">
+						<!-- Само фото теперь становится фоновым элементом -->
+						<div class="gallery__bg-image">
+							<img src="./img/imperior.png" alt="Программа Император">
+							<div class="gallery__glow"></div>
+						</div>
+
+						<!-- Блок с текстом и кнопкой поверх фото -->
+						<div class="gallery__card-overlay">
+							<h3 class="gallery__card-title">Император</h3>
+							<div class="gallery__meta">
+								<span>1 час 30 минут</span>
+								<span>8 000 ₽</span>
+							</div>
+							<button class="gallery__btn" data-id="1" data-title="Император" data-time="1 час 30 минут" data-price="8 000 ₽" data-desc="Глубокий релакс с использованием редких масел. Полное погружение в атмосферу абсолютной власти и спокойствия.">Подробнее</button>
+						</div>
+					</div>
+					<!-- Карточка 2 -->
+					<div class="gallery__card full-bg-card">
+						<!-- Само фото теперь становится фоновым элементом -->
+						<div class="gallery__bg-image">
+							<img src="./img/imperior.png" alt="Программа Император">
+							<div class="gallery__glow"></div>
+						</div>
+
+						<!-- Блок с текстом и кнопкой поверх фото -->
+						<div class="gallery__card-overlay">
+							<h3 class="gallery__card-title">Император</h3>
+							<div class="gallery__meta">
+								<span>1 час 30 минут</span>
+								<span>8 000 ₽</span>
+							</div>
+							<button class="gallery__btn" data-id="1" data-title="Император" data-time="1 час 30 минут" data-price="8 000 ₽" data-desc="Глубокий релакс с использованием редких масел. Полное погружение в атмосферу абсолютной власти и спокойствия.">Подробнее</button>
+						</div>
+					</div>
+					<!-- Карточка 3 -->
+					<div class="gallery__card full-bg-card">
+						<!-- Само фото теперь становится фоновым элементом -->
+						<div class="gallery__bg-image">
+							<img src="./img/imperior.png" alt="Программа Император">
+							<div class="gallery__glow"></div>
+						</div>
+
+						<!-- Блок с текстом и кнопкой поверх фото -->
+						<div class="gallery__card-overlay">
+							<h3 class="gallery__card-title">Император</h3>
+							<div class="gallery__meta">
+								<span>1 час 30 минут</span>
+								<span>8 000 ₽</span>
+							</div>
+							<button class="gallery__btn" data-id="1" data-title="Император" data-time="1 час 30 минут" data-price="8 000 ₽" data-desc="Глубокий релакс с использованием редких масел. Полное погружение в атмосферу абсолютной власти и спокойствия.">Подробнее</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="masters-section" id="masters-section">
+			<div class="masters-container">
+				<h2 class="gallery__title">Наши мастера</h2>
+				<!-- Описание секции -->
+				<div class="masters-description">
+					<p class="masters-desc-text">
+						В нашем клубе нет случайных людей. Каждая девушка — это психолог, актриса и художница в одном лице. 
+						Они чувствуют ваше настроение еще до первого прикосновения.
+					</p>
+				</div>
+
+				<!-- Сетка карточек -->
+				<div class="masters-grid">
+					
+					<!-- Карточка 1 -->
+					<div class="masters-card">
+						<div class="masters-info">
+							<h3 class="masters-name">Алиса</h3>
+							<p class="masters-spec">Эксперт по боди-массажу</p>
+						</div>
+						<div class="masters-photo">
+							<img src="./img/lia.png" alt="Мастерица Алиса" id="01a11d5f-8bad-594-80d5-e70f65e5c8bf">
+							
+						</div>
+						
+					</div>
+
+					<!-- Карточка 2 -->
+					<div class="masters-card">
+						<div class="masters-info">
+							<h3 class="masters-name">Ева</h3>
+							<p class="masters-spec">Королева тайских техник</p>
+						</div>
+						<div class="masters-photo">
+							<img src="./img/lia.png" alt="Мастерица Ева" id="01a11d5f-8bad-7388-83d5-eebc58e5e0db">
+						</div>
+					</div>
+
+					<!-- Карточка 3 -->
+					<div class="masters-card">
+						<div class="masters-info">
+							<h3 class="masters-name">Лилит</h3>
+							<p class="masters-spec">Магистр релаксации</p>
+						</div>
+						<div class="masters-photo">
+						   <img src="./img/lia.png" alt="Мастерица Лилит" id="01a11d5f-8f96-7ec2-812d-9e70f6a10923">
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		
 		<section class="advantages" id="advantages">
 		  <div class="advantages__container">
-			<h2 class="advantages__title">Почему нас выбирают</h2>
+			<h2 class="gallery__title">Почему нас выбирают</h2>
 			<div class="advantages__grid">
 			  
 			  <!-- Пример одной карточки -->
@@ -115,125 +212,151 @@
 				<h3 class="advantages__card-title">Время без спешки</h3>
 				<p class="advantages__card-text">Никаких посторонних. Всё время сессии принадлежит только вам.</p>
 			  </div>
+			</div>
+			<div class="advantages__grid">
 
 			  <div class="feature-card">
 				 <div class="feature-card-icon"><img src="./img/cross.png" width="70px"></div>
 				<h3 class="advantages__card-title">Безопасность</h3>
-				<p class="advantages__card-text">Медицинские стандарты чистоты и гипоаллергенные масла.</p>
+				<p class="advantages__card-text">Применяем стандарты чистоты и гипоаллергенные масла.</p>
+			  </div>
+			  <div class="feature-card">
+				 <div class="feature-card-icon"><img src="./img/no-sex.png" width="70px"></div>
+				<h3 class="advantages__card-title">Не оказываем</h3>
+				<p class="advantages__card-text">Не занимаемся оказанием медицинских и интимных услуг</p>
 			  </div>
 
 			</div>
 		  </div>
 		</section>
-		<section class="gallery" id="gallery">
-		 <!-- Основной контент -->
-			<div class="gallery__container">
-				<h2 class="gallery__title">Выберите свой ритуал</h2>
-				<div class="gallery__grid">
-
-					<!-- Карточка 1 -->
-					<div class="gallery__card">
-						<div class="gallery__image">
-							<img src='./img/imperior.png' width='200px' alt="Программа Император">
-							<div class="gallery__glow"></div>
-						</div>
-						<div class="gallery__card-body">
-							<h3 class="gallery__card-title">Император</h3>
-							<div class="gallery__meta">
-								<span>1 час 30 минут</span>
-								<span>8 000 ₽</span>
-							</div>
-							<!-- Добавляем data-атрибут для передачи данных в скрипт -->
-							<button class="gallery__btn" data-id="1" data-title="Император" data-time="1 час 30 минут" data-price="8 000 ₽" data-desc="Глубокий релакс с использованием редких масел. Полное погружение в атмосферу абсолютной власти и спокойствия.">Подробнее</button>
+		<section class="contacts-section" id="contacts-section">
+			<h2 class="gallery__title">Нас легко найти</h2>
+			<div class="contacts-container">
+				
+				<!-- Левая колонка: Текст -->
+				<div class="contacts-info">
+					<h2 class="contacts-title">Контакты</h2>
+					
+					<div class="contacts-item">
+						<i class="fas fa-map-marker-alt"></i>
+						<div>
+							<span class="contacts-label">Адрес:</span>
+							<p class="contacts-text">г. Псков, Юбилейная улица, 89А, 1 подъезд</p>
+							<p class="contacts-text">г. Псков, Гражданская улица, 15А, подъезд 3</p>
 						</div>
 					</div>
 
-					<!-- Карточка 2-->
-					<div class="gallery__card">
-						<div class="gallery__image">
-							<img src='./img/imperior.png' width='70px' alt="Программа Император">
-							<div class="gallery__glow"></div>
-						</div>
-						<div class="gallery__card-body">
-							<h3 class="gallery__card-title">Император</h3>
-							<div class="gallery__meta">
-								<span>1 час 30 минут</span>
-								<span>8 000 ₽</span>
-							</div>
-							<!-- Добавляем data-атрибут для передачи данных в скрипт -->
-							<button class="gallery__btn" data-id="1" data-title="Император" data-time="1 час 30 минут" data-price="8 000 ₽" data-desc="Глубокий релакс с использованием редких масел. Полное погружение в атмосферу абсолютной власти и спокойствия.">Подробнее</button>
-						</div>
-					</div>
-					<!-- Карточка 3 -->
-					<div class="gallery__card">
-						<div class="gallery__image">
-							<img src='./img/imperior.png' width='70px' alt="Программа Император">
-							<div class="gallery__glow"></div>
-						</div>
-						<div class="gallery__card-body">
-							<h3 class="gallery__card-title">Император</h3>
-							<div class="gallery__meta">
-								<span>1 час 30 минут</span>
-								<span>8 000 ₽</span>
-							</div>
-							<!-- Добавляем data-атрибут для передачи данных в скрипт -->
-							<button class="gallery__btn" data-id="1" data-title="Император" data-time="1 час 30 минут" data-price="8 000 ₽" data-desc="Глубокий релакс с использованием редких масел. Полное погружение в атмосферу абсолютной власти и спокойствия.">Подробнее</button>
-						</div>
-					</div>
-					<!-- Карточка 4 -->
-					<div class="gallery__card">
-						<div class="gallery__image">
-							<img src='./img/imperior.png' width='70px' alt="Программа Император">
-							<div class="gallery__glow"></div>
-						</div>
-						<div class="gallery__card-body">
-							<h3 class="gallery__card-title">Император</h3>
-							<div class="gallery__meta">
-								<span>1 час 30 минут</span>
-								<span>8 000 ₽</span>
-							</div>
-							<!-- Добавляем data-атрибут для передачи данных в скрипт -->
-							<button class="gallery__btn" data-id="1" data-title="Император" data-time="1 час 30 минут" data-price="8 000 ₽" data-desc="Глубокий релакс с использованием редких масел. Полное погружение в атмосферу абсолютной власти и спокойствия.">Подробнее</button>
+					<div class="contacts-item">
+						<i class="fas fa-phone"></i>
+						<div>
+							<span class="contacts-label">Телефон:</span>
+							<a href="tel:+79113820383" class="contacts-text">+7 (911) 382-03-83</a>
 						</div>
 					</div>
 
-					<!-- Карточка 5 -->
-					<div class="gallery__card">
-						<div class="gallery__image">
-							<img src='./img/imperior.png' width='70px' alt="Программа Император">
-							<div class="gallery__glow"></div>
-						</div>
-						<div class="gallery__card-body">
-							<h3 class="gallery__card-title">Император</h3>
-							<div class="gallery__meta">
-								<span>1 час 30 минут</span>
-								<span>8 000 ₽</span>
-							</div>
-							<!-- Добавляем data-атрибут для передачи данных в скрипт -->
-							<button class="gallery__btn" data-id="1" data-title="Император" data-time="1 час 30 минут" data-price="8 000 ₽" data-desc="Глубокий релакс с использованием редких масел. Полное погружение в атмосферу абсолютной власти и спокойствия.">Подробнее</button>
+					<div class="contacts-item">
+						<i class="fab fa-vk"></i>
+						<div>
+							<span class="contacts-label">ВКонтакте:</span>
+							<a href="https://vk.ru/lubov_pskov" target="_blank" class="contacts-text">vk.ru/lubov_pskov</a>
 						</div>
 					</div>
-					<!-- Карточка 6 -->
-					<div class="gallery__card">
-						<div class="gallery__image">
-							<img src='./img/imperior.png' width='70px' alt="Программа Император">
-							<div class="gallery__glow"></div>
-						</div>
-						<div class="gallery__card-body">
-							<h3 class="gallery__card-title">Император</h3>
-							<div class="gallery__meta">
-								<span>1 час 30 минут</span>
-								<span>8 000 ₽</span>
-							</div>
-							<!-- Добавляем data-атрибут для передачи данных в скрипт -->
-							<button class="gallery__btn" data-id="1" data-title="Император" data-time="1 час 30 минут" data-price="8 000 ₽" data-desc="Глубокий релакс с использованием редких масел. Полное погружение в атмосферу абсолютной власти и спокойствия.">Подробнее</button>
+
+					<div class="contacts-item">
+						<i class="fab fa-telegram"></i>
+						<div>
+							<span class="contacts-label">Telegram:</span>
+							<a href="https://t.me/lubov_v_rukah" target="_blank" class="contacts-text">t.me/lubov_v_rukah</a>
 						</div>
 					</div>
 				</div>
+
+				<!-- Правая колонка: Карта --> 
+				<div class="contacts-map"> 
+				<!-- Замените координаты (55.7532, 37.6225) на координаты вашего салона. Их можно взять на Яндекс Картах через кнопку «Поделиться» -> «Скопировать код». --> 
+					<iframe 
+						src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad9ca38e0782ca927909140909cc4c531b3e04c58eae5303c3f994d4e69d81987&amp;source=constructor" 
+						width="100%" 
+						height="100%" 
+						frameborder="0"> 
+					</iframe> 
+				</div>
+
 			</div>
 		</section>
+		<section class="timeline-section" id="timeline-section"> 
+			<div class="timeline-container"> 
+				<h2 class="gallery__title">Как проходит визит</h2>
+					<div class="timeline">
+						<!-- Этап 1: Встреча -->
+						<div class="timeline-item">
+							<div class="timeline-icon">
+								<i class="fa-solid fa-door-open"></i>
+							</div>
+							<div class="timeline-content">
+								<h3 class="timeline-step">Встреча</h3>
+								<p class="timeline-text">Вас радушно встречают в салоне, помогают почувствовать себя комфортно и проводят в уютную зону отдыха.</p>
+							</div>
+						</div>
 
-<!-- Модальное окно (сначала скрыто) -->
+						<!-- Этап 2: Обсуждение -->
+						<div class="timeline-item">
+							<div class="timeline-icon">
+								<i class="fa-solid fa-comments"></i>
+							</div>
+							<div class="timeline-content">
+								<h3 class="timeline-step">Обсуждение</h3>
+								<p class="timeline-text">Вы знакомитесь с мастерицей. Обсуждаете детали программы, ваши предпочтения и желаемое настроение.</p>
+							</div>
+						</div>
+
+						<!-- Этап 3: Душ (Подготовка) -->
+						<div class="timeline-item">
+							<div class="timeline-icon">
+								<i class="fa-solid fa-shower"></i>
+							</div>
+							<div class="timeline-content">
+								<h3 class="timeline-step">Подготовка</h3>
+								<p class="timeline-text">Принятие душа для очищения тела и мыслей перед началом ритуала.</p>
+							</div>
+						</div>
+
+						<!-- Этап 4: Ритуал -->
+						<div class="timeline-item">
+							<div class="timeline-icon">
+								<i class="fa-solid fa-spa"></i>
+							</div>
+							<div class="timeline-content">
+								<h3 class="timeline-step">Ритуал</h3>
+								<p class="timeline-text">Основная часть программы. Погружение в мир чувственных прикосновений и глубокого расслабления.</p>
+							</div>
+						</div>
+
+						<!-- Этап 5: Наслаждение -->
+						<div class="timeline-item">
+							<div class="timeline-icon">
+								<i class="fa-solid fa-heart"></i>
+							</div>
+							<div class="timeline-content">
+								<h3 class="timeline-step">Наслаждение</h3>
+								<p class="timeline-text">Состояние полного покоя и гармонии. Время, которое принадлежит только вам.</p>
+							</div>
+						</div>
+
+						<!-- Этап 6: Душ (Завершение) -->
+						<div class="timeline-item">
+							<div class="timeline-icon">
+								<i class="fa-solid fa-tint"></i>
+							</div>
+							<div class="timeline-content">
+								<h3 class="timeline-step">Завершение</h3>
+								<p class="timeline-text">Возможность освежиться после ритуала, привести мысли в порядок и подготовиться к возвращению в мир.</p>
+							</div>
+						</div>
+					</div>
+				</div> 
+			</section>
+		<!-- Модальное окно (сначала скрыто) -->
 		<div id="modal" class="modal">
 			<div class="modal__content">
 				<span class="modal__close">&times;</span>
@@ -249,11 +372,30 @@
 				</div>
 				<hr class="modal__divider">
 				<p id="modal-desc"></p>
-				<button class="header__btn send_btn">Записаться</button>
 			</div>
 		</div>
 
-<!-- 2. МОДАЛЬНОЕ ОКНО (изначально скрыто через CSS) -->
+
+		
+    </main>
+		
+
+		<div id="main-footer"></div>
+		<script> 
+		fetch('./header.html') 
+			.then(response => response.text()) 
+			.then(data => { 
+				document.getElementById('main-header').innerHTML = data; 
+			}); 
+		</script>
+		<script> 
+		fetch('./footer.html') 
+			.then(response => response.text()) 
+			.then(data => { 
+				document.getElementById('main-footer').innerHTML = data; 
+			}); 
+		</script>
+		<!-- 2. МОДАЛЬНОЕ ОКНО (изначально скрыто через CSS) -->
 		<div id="booking-modal" class="modal">
 			
 			<!-- Фон-затемнение -->
@@ -284,14 +426,19 @@
 
 							<button type="submit" class="form-btn">Отправить</button>
 							<div id="form-status" class="form-status"></div>
+							<label class="form-checkbox-label"> 
+								<input type="checkbox" name="accept_terms" id="accept_terms" required> 
+								<span>Нажимая на кнопку, я соглашаюсь с <a href="/privacy-policy">политикой конфиденциальности</a> и обработкой персональных данных</span> 
+							</label>
 						</form>
 					</div>
 				</section>
 
 			</div>
 		</div>
-		
-    </main>
-
+	<script src="main_js.js"></script>
+	<script src="age_js.js"></script>
+	<script src="form_js.js"></script>
+	<script src="header_js.js"></script>
 </body>
 </html>

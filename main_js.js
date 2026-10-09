@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     openButtons.forEach(button => {
         button.addEventListener('click', function() {
             // Получаем данные из атрибутов кнопки
-            const imgSrc = this.closest('.gallery__card').querySelector('.gallery__image img').src;
+            const imgSrc = this.closest('.gallery__card').querySelector('.gallery__bg-image img').src;
             
             modalImg.src = imgSrc;
             modalTitle.textContent = this.dataset.title;

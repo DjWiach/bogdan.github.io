@@ -108,9 +108,15 @@
     transform: translateY(-3px);
 }
 
-.age-note {
-    font-size: 0.8rem;
-    color: #666B79;
+
+.police_text_link {
+    color: #B58900;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.police_text_link:hover {
+    color: #C49800;
 }
 
 /* Адаптивность */
@@ -123,101 +129,10 @@
     }
 }
 
-/* --- Уведомление о куки --- */
-.cookie-banner {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(135deg, #0F141E, #1A2230);
-    color: #E0E5EC;
-    z-index: 10000; /* Выше, чем у модальных окон */
-    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-    font-size: 0.95rem;
-}
-
-.cookie-banner__content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-}
-
-.cookie-banner__text {
-    flex: 1;
-    display: flex;
+.age-note {
     align-items: center;
     gap: 12px;
     min-width: 200px;
-}
-
-.cookie-banner__icon {
-    font-size: 1.4rem;
-    color: #B58900;
-    flex-shrink: 0;
-}
-
-.cookie-banner__link {
-    color: #B58900;
-    text-decoration: underline;
-    transition: color 0.3s ease;
-}
-
-.cookie-banner__link:hover {
-    color: #C49800;
-}
-
-.cookie-banner__btn {
-    background-color: #B58900;
-    color: #1A2230;
-    border: none;
-    padding: 12px 25px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-.cookie-banner__btn:hover {
-    background-color: #C49800;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(181, 137, 0, 0.3);
-}
-
-/* Адаптивность для мобильных */
-@media (max-width: 600px) {
-    .cookie-banner__content {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
-    
-    .cookie-banner__btn {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-
-/* --- Обнуление стилей для списка --- */
-.nav__list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-/* --- Основные цвета --- */
-:root {
-    --gold: #B58900;
-    --light-text: #E0E5EC;
-    --bg-header: #0F141E;
 }
 
 /* --- Базовые настройки --- */
@@ -225,227 +140,35 @@ body {
     margin: 0;
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #0F141E, #1A2230);
-    color: var(--light-text);
+    color: #E0E5EC;
 }
 
 /* --- Шапка --- */
-.header {
-    padding: 20px 0;
-    background-color: var(--bg-header);
-    border-bottom: 1px solid rgba(181, 137, 0, 0.2);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+
+
+
+.hero__btn:hover {
+    background-color: #C49800;
+    transform: translateY(-4px);
 }
-
-.header__container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: flex-start; /* Выравниваем по верхнему краю, чтобы многострочное меню смотрелось ровно */
-    gap: 20px; /* Заменяем justify-content на gap для контроля отступов */
-}
-
-/* Логотип */
-.header__logo {
-    flex-shrink: 0; /* Запрещаем логотипу сжиматься */
-    height: 80px; 
-    display: flex;
-    align-items: center;
-}
-
-.logo-link {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: #B58900;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    height: 100%;
-    justify-content: center;
-}
-
-.logo-img {
-    width: 10%;
-    height: auto;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.logo-text {
-    line-height: 1.1;
-    text-transform: capitalize;
-}
-
-/* Навигация */
-.header__nav {
-    /* Меню занимает всё оставшееся пространство */
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-.nav__list {
-    /* Ключевые свойства для адаптивности */
-    display: flex;
-    flex-wrap: wrap; /* Разрешаем перенос пунктов на новые строки */
-    gap: 20px; /* Расстояние между пунктами (вместо margin) */
-    justify-content: flex-end; /* Прижимаем меню к правому краю */
-    width: 100%;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.nav__link {
-    font-size: 1rem;
-    color: var(--light-text);
-    text-decoration: none;
-    position: relative;
-    transition: color 0.3s ease;
-    white-space: nowrap; /* Запрещаем разрывать слово */
-}
-
-.nav__link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: var(--gold);
-    transition: width 0.3s ease;
-}
-
-.nav__link:hover {
-    color: var(--gold);
-}
-.nav__link:hover::after {
-    width: 100%;
-}
-
-/* Кнопка "Войти" */
-.header__btn {
-    font-size: 1rem;
-    color: var(--gold);
-    background: transparent;
-    border: 2px solid var(--gold);
-    padding: 12px 28px;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-    flex-shrink: 0; /* Кнопка не сжимается */
-    margin-left: 20px; /* Отступ от меню */
-}
-
-.header__btn:hover {
-    background-color: var(--gold);
-    color: var(--bg-header);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(181, 137, 0, 0.3);
-}
-
-/* --- ИКОНКА БУРГЕРА (добавьте в HTML) --- */
-.header__hamburger {
-    display: none;
-    font-size: 1.8rem;
-    color: var(--gold);
-    cursor: pointer;
-    padding: 5px;
-    border: none;
-    background: transparent;
-    flex-shrink: 0;
-}
-
-/* --- АДАПТИВНОСТЬ --- */
-
-/* Планшеты: просто уменьшаем отступы */
-@media (max-width: 1024px) {
-    .header__container { gap: 15px; }
-    .nav__list { gap: 15px; }
-    .nav__link { font-size: 0.95rem; }
-    .header__btn { padding: 10px 24px; }
-}
-
-/* Мобильные: прячем десктопное меню, показываем бургер */
-@media (max-width: 768px) {
-    .header__container {
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .header__nav {
-        display: none; /* Полностью скрываем блок nav на мобильных */
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: var(--bg-header);
-        border-bottom: 1px solid rgba(181, 137, 0, 0.2);
-        padding: 10px 0;
-    }
-
-    .nav__list {
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-        justify-content: flex-start;
-    }
-
-    .nav__link {
-        padding: 15px 20px;
-        width: 100%;
-        text-align: center;
-        border-top: 1px solid #252F42;
-    }
-    .nav__link:first-child { border-top: none; }
-
-    .header__btn {
-        margin-left: 0;
-        width: 100%;
-        text-align: center;
-        border-top: 1px solid #252F42;
-    }
-
-    /* Показываем бургер */
-    .header__hamburger {
-        display: block;
-    }
-}
-/* --- Стили для оффера --- */
-/*.main-content {
-    padding: 0 0;
-    text-align: center;
-	justify-content: center;
-    min-height: 100vh;
-}*/
 /* --- Центральный оффер (Первый экран) --- */
 
 /* Родительский блок - центрирует всё */
 .hero {
     width: 100%;
     height: 100dvh;
-	background:	linear-gradient(135deg, #0F141E, #1A2230);
 	background-image: url(./img/card_bgnd_.jpg);
 	background-size: cover; 
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 ; /*20px*/
+    padding: 0 ; 
     box-sizing: border-box;
-    z-index: 1;
+	font-family: 'Cormorant Garamond', serif;
+	z-index: 1; /* Над картинкой, но под текстом */
 }
-/*
-.blured{
-	width: 100%;
-    height: 100%;
-	backdrop-filter: blur(10px) brightness(90%);
-}*/
+
 /* Контейнер - ограничивает ширину текста */
 .hero__container {
     max-width: 800px;
@@ -455,34 +178,41 @@ body {
     z-index: 2;
 }
 
-/* Остальные стили (заголовок, текст, кнопка) остаются без изменений, 
-   так как text-align: center; на родителе .hero уже выровнял их текст */
 .hero__title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-size: clamp(2.5rem, 12vw, 8.5rem);
     font-weight: 700;
-    color: #E0E5EC;
-    margin-top: 15px;
-    line-height: 1.1;
-	text-shadow: 2px 2px 0px #1A2230, /* Темная глубина */ 4px 4px 0px #0F141E, /* Еще глубже */ -1px -1px 0px #C49800, /* Светлый блик сверху-слева */ 1px 1px 0px #7D5E00;
+    color: #B58900;
+    line-height: 0.8;
+	text-shadow: 
+		2px 2px 0px #1A2230, /* Темная глубина */ 
+		4px 4px 0px #0F141E, /* Еще глубже */ 
+		-1px -1px 0px #1A2230, /* Светлый блик сверху-слева */ 
+		1px 1px 0px #7D5E00;
 }
 
 .hero__subtitle {
-    font-family: 'Arial', sans-serif;
-    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-size: clamp(2.1rem, 2vw, 6.5rem);
+	flex-wrap: nowrap;
     font-style: normal;
     font-weight: 300;
-    color: #B58900;
+    color: #E0E5EC;
     margin-top: 30px;
     letter-spacing: 0.5px;
+	wrap:
 }
 
 .hero__text {
     font-size: clamp(1rem, 2.5vw, 1.2rem);
+	flex-wrap: nowrap;
     color: #E0E5EC;
     line-height: 1.7;
     margin-top: 40px;
     opacity: 0.9;
+		text-shadow: 
+		1px 1px 0px #1A2230, /* Темная глубина */ 
+		2px 2px 0px #0F141E, /* Еще глубже */ 
+		-1px -1px 0px #1A2230, /* Светлый блик сверху-слева */ 
+		.5px .5px 0px #7D5E00;
 }
 
 .hero__btn {
@@ -559,9 +289,12 @@ body {
 }
 
 .advantages__container {
-    max-width: 1000px;
+    
+	max-width: 800px;
     margin: 0 auto;
     padding: 0 20px;
+	justify-content: center;
+
 	
 }
 
@@ -579,7 +312,9 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 30px;
+	margin-bottom:30px;
     text-align: center;
+	place-items: center;
 }
 
 /* Карточка */
@@ -662,8 +397,8 @@ body {
   border-radius: 16px;
   text-align: center;
   /* Основные параметры рамки */
-  border: 2px solid #B58900;
-  /* Чтобы рамка не прилипала к краям, а создавала эффект "внутреннего отступа", 
+  /*border: 2px solid #B58900;
+   Чтобы рамка не прилипала к краям, а создавала эффект "внутреннего отступа", 
      можно использовать outline или вложенный блок. 
      Вариант с outline-offset: */
   outline: 2px solid #B58900;
@@ -695,10 +430,10 @@ body {
   margin-bottom: 20px;
 }
 
-/* --- Блок Галерея (Программы) --- 
+/* --- Блок Галерея (Программы) --- */
 .gallery {
     /*background: linear-gradient(180deg, #1A2230 0%, #252F42 100%);*/
-    padding: 100px 0;
+    padding: 20px 0;
     color: #fff;
     position: relative;
     overflow: hidden;
@@ -729,7 +464,7 @@ body {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2.5rem;
     color: #E0E5EC;
-    margin: 25px 0 60px 0;
+    margin: 0 0 60px 0;
     font-weight: 700;
     position: relative;
     z-index: 1;
@@ -738,12 +473,13 @@ body {
 /* Сетка карточек */
 .gallery__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 4fr));
     gap: 30px;
 }
 
 /* Карточка */
 .gallery__card {
+	height: 25rem;
     background-color: #1A2230;
     border-radius: 15px;
     overflow: hidden;
@@ -772,17 +508,137 @@ body {
 /* Блок с изображением */
 .gallery__image {
     position: relative;
-    height: 200px;
+    flex-grow: 1; /* Занимает всё оставшееся место */
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
 .gallery__image img {
-	height: 100%;
-    object-fit: contain;
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
     transition: transform 0.5s ease;
-	margin: 0 auto;
+    /* Затемнение фото для читаемости текста */
+    filter: brightness(0.6);
 }
+/* --- КАРТОЧКА (ФОН) --- */
+.gallery__card {
+    position: relative;
+    z-index: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    /* Золотая объемная рамка */
+    border: 4px ridge #B58900;
+    
+    /* Объемные тени (эффект вырезанного камня) */
+    box-shadow: 
+        4px 4px 12px rgba(0, 0, 0, 0.5), 
+        2px 2px 6px rgba(0, 0, 0, 0.3);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Чтобы текст не уезжал под рамку при transform */
+.gallery__card-inner-wrapper {
+    height: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- ФОНОВОЕ ИЗОБРАЖЕНИЕ --- */
+.gallery__bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.gallery__bg-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    /* Затемнение фото, чтобы текст читался */
+    filter: brightness(0.6);
+}
+
+/* Эффект свечения (по желанию) */
+.gallery__glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% -50%, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* --- ТЕКСТ ПОВЕРХ ФОНА --- */
+.gallery__card-overlay {
+    position: relative;
+    z-index: 2; /* Важно: выше, чем картинка */
+   /* padding: 30px;*/
+    color: #E0E5EC;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Прижимаем контент к низу */
+    
+    /* Полупрозрачный темный фон для текста */
+    background: linear-gradient(to top, rgba(15, 20, 30, 0.9) 0%, rgba(15, 20, 30, 0) 100%);
+    min-height: 22rem; /* Чтобы оверлей не сжимался */
+	padding: 1rem;
+}
+
+/* --- ТИТУЛЫ --- */
+.gallery__card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: #B58900;
+    margin: 0 0 10px;
+    line-height: 1.1;
+    text-shadow: 1px 1px 0px #0F141E;
+}
+
+.gallery__meta {
+    display: flex;
+    justify-content: space-between;
+    color: #E0E5EC;
+    font-size: 0.95rem;
+    margin: 0 0 20px;
+    opacity: 0.9;
+}
+
+/* --- КНОПКА --- */
+.gallery__btn {
+    align-self: flex-start; /* Кнопка слева */
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1A2230;
+    background-color: #B58900;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 3;
+}
+.gallery__btn:hover {
+    background-color: #C49800;
+    transform: translateY(-3px);
+}
+
+/* --- ЭФФЕКТ ПРИ НАВЕДЕНИИ --- */
+.gallery__card:hover {
+    transform: translateY(-10px) scale(1.05); /* Исправлено: объединено */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(181, 137, 0, 0.2);
+}
+
 
 /* Эффект теплого свечения по краям фото */
 .gallery__glow {
@@ -796,11 +652,7 @@ body {
     background: radial-gradient(circle at center, rgba(255, 215, 0, 0.15) 0%, transparent 50%);
 }
 
-/* Увеличение фото при наведении на карточку */
-.gallery__card:hover .gallery__image img {
-    /*transform: scale(1.2);*/
-}
-/* ... стили .gallery__card остаются прежними ... */
+
 
 /* Контейнер для текста внутри карточки */
 .gallery__card-body {
@@ -871,6 +723,232 @@ body {
         width: 100%;
     }
 }
+
+
+/* --- Блок Наши мастерицы --- */
+.masters-section {
+    /*background-color: #1A2230;*/
+    padding: 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.masters-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Описание сверху */
+.masters-description {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.masters-desc-text {
+    font-size: 1.1rem;
+    color: #E0E5EC;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    opacity: 0.9;
+    
+    /* 3D эффект текста */
+    text-shadow: 
+        1px 1px 0px #0F141E,
+        2px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+/* Сетка карточек */
+.masters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Карточка */
+.masters-card {
+    background-color: #0F141E;
+    border: 4px ridge #B58900; /* Объемная золотая рамка */
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Эффект при наведении: увеличение и тень */
+.masters-card:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 0 20px 40px rgba(181, 137, 0, 0.3), 0 0 0 2px rgba(181, 137, 0, 0.2);
+    z-index: 1;
+}
+
+/* Информация (Имя и Специализация) */
+.masters-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 20px;
+    z-index: 2;
+    pointer-events: none; /* Чтобы текст не мешал, если захотите сделать карточку кликабельной */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+}
+
+/* Имя (Псевдоним) */
+.masters-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    color: #B58900;
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.1;
+    
+    /* 3D эффект */
+    text-shadow: 
+        1px 1px 0px #0F141E,
+        2px 2px 0px #1A2230,
+        -1px -1px 0px #C49800;
+}
+
+/* Специализация */
+.masters-spec {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: #E0E5EC;
+    margin: 0;
+    font-weight: 400;
+    font-style: italic;
+    opacity: 0.9;
+    
+    /* 3D эффект */
+    text-shadow: 
+        1px 1px 0px #0F141E,
+        0 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Фото */
+.masters-photo {
+    flex-grow: 1; /* Занимает всё оставшееся место */
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.masters-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+    /* Затемнение фото для читаемости текста */
+    filter: brightness(0.6);
+}
+
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .masters-section { padding: 60px 0; }
+    .masters-grid { grid-template-columns: 1fr; }
+    .masters-name { font-size: 1.6rem; }
+    .masters-spec { font-size: 1rem; }
+}
+
+/* --- Блок Контакты --- */
+.contacts-section {
+    padding: 20px 0;
+    color: #E0E5EC;
+}
+
+.contacts-container {
+	background-color: #1A2230;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Две равные колонки */
+    gap: 60px;
+    align-items: start;
+}
+
+/* Левая колонка */
+.contacts-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contacts-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: #B58900;
+    margin: 0 0 10px;
+}
+
+.contacts-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    font-size: 1.1rem;
+}
+
+/* Иконки Font Awesome */
+.contacts-item i {
+    font-size: 1.5rem;
+    color: #B58900;
+    min-width: 30px; /* Фиксируем ширину, чтобы текст был в ряд */
+    margin-top: 3px;
+}
+
+.contacts-label {
+    font-weight: 600;
+    color: #E0E5EC;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.contacts-text {
+    color: #A7B0C2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contacts-text:hover {
+    color: #B58900;
+}
+
+/* Правая колонка (Карта) */
+.contacts-map {
+    width: 100%;
+    height: 450px; /* Фиксированная высота для десктопа */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid #252F42;
+}
+
+/* Адаптивность: на мобильных колонки встают друг под друга */
+@media (max-width: 900px) {
+    .contacts-container {
+        grid-template-columns: 1fr; /* Одна колонка */
+        gap: 40px;
+    }
+    
+    .contacts-title {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .contacts-map {
+        height: 300px;
+    }
+}
+
 /* --- Модальное окно --- */
 .modal {
     display: none; /* Скрыто по умолчанию */
@@ -964,6 +1042,137 @@ body {
         transform: translateY(0);
     }
 }
+/* --- Блок Таймлайн --- */
+.timeline-section {
+    padding: 20px 0;
+    /* background-color: #0F141E; Так как фона секции #1A2230 нет, задаем темный фон здесь */
+    color: #E0E5EC;
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+/* Основной контейнер линии */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 0 50px; /* Отступы, чтобы иконки не прилипали к краям */
+}
+
+/* Сама линия (progress bar) */
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 25px; /* Выравниваем по центру иконки (50px / 2) */
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #B58900;
+    z-index: 1;
+}
+
+/* Этап */
+.timeline-item {
+    position: relative;
+    flex: 1; /* Занимает равное пространство */
+    text-align: center;
+    padding-top: 60px; /* Отступ для контента сверху */
+    z-index: 2; /* Чтобы текст был над линией */
+}
+
+/* Иконка этапа */
+.timeline-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #1A2230;
+    border: 4px solid #B58900;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    position: relative;
+    z-index: 3;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-icon i {
+    font-size: 1.5rem;
+    color: #B58900;
+}
+
+/* Эффект при наведении на этап */
+.timeline-item:hover .timeline-icon {
+    background-color: #B58900;
+    transform: scale(1.1);
+}
+.timeline-item:hover .timeline-icon i {
+    color: #1A2230;
+}
+
+/* Содержимое этапа */
+.timeline-content {
+    margin-top: 20px;
+}
+
+.timeline-step {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: #E0E5EC;
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+
+.timeline-text {
+    font-size: 1rem;
+    color: #A7B0C2;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- АДАПТИВНОСТЬ --- */
+@media (max-width: 900px) {
+    .timeline {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .timeline::before {
+        left: 25px; /* Линия уходит влево к иконкам */
+        width: 4px;
+        height: 100%;
+        top: 0;
+    }
+
+    .timeline-item {
+        flex: none;
+        width: 100%;
+        max-width: 400px;
+        text-align: left;
+        padding-left: 80px; /* Отступ для текста */
+        padding-top: 30px;
+        margin-bottom: 40px;
+    }
+
+    .timeline-icon {
+        position: absolute;
+        left: 0; /* Иконки фиксируются слева */
+        top: 0;
+    }
+
+    .timeline-content {
+        margin-left: 0;
+    }
+}
+
 
 
 /* премиальный массаж на темном фоне золотыми буквами с эффектом глубины

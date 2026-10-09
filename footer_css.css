@@ -1,0 +1,133 @@
+/* --- ОСНОВНОЙ КОНТЕЙНЕР --- */
+.footer-container {
+    width: 100vh;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center; /* Центрируем текст внутри p и span */
+	background-color:#1A2230;
+	color: #E0E5EC;
+}
+
+/* --- СТРОКИ (Flex-контейнеры) --- */
+.footer__row {
+    display: flex;
+    justify-content: center; /* Центрируем блоки по горизонтали */
+    align-items: center;     /* Центрируем элементы разной высоты по вертикали */
+    flex-wrap: wrap;         /* Позволяет иконкам перейти на новую строку, если не влезают */
+    gap: 20px;               /* Расстояние между всеми элементами в строке */
+    margin-bottom: 20px;
+}
+
+.footer__info{
+	font-variant: small-caps;
+	font-size: 20px;
+}
+
+.footer__warning{
+	font-variant: small-caps;
+	font-size: 20px;
+	color: #F00;
+}
+
+/* Строка с линией (hr) */
+.footer__row--divider {
+    justify-content: center;
+    width: 90%;
+}
+.footer__divider {
+    height: 2px;
+    background-color: #B58900;
+    border: none;
+}
+
+/* Строка с контактами */
+.footer__row--contacts {
+    flex-wrap: nowrap; /* Стараемся держать в одну строку */
+    align-items: flex-start; /* Чтобы текст адреса не прыгал по вертикали относительно иконки */
+}
+
+/* Иконка карты */
+.footer__icon--map {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url('./img/map-pin.png'); /* Замените на ваш путь */
+    background-size: cover;
+    margin-right: 10px;
+    align-self: flex-start; /* Прижимаем иконку к верху текста */
+}
+
+/* Текст адреса */
+.footer__text {
+    color: #E0E5EC;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Блок с иконками мессенджеров */
+.footer__social-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: 20px;
+}
+
+/* Иконки (ваши классы contact-icon) */
+.contact-icon {
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    background-size: cover;
+    transition: transform 0.3s ease;
+}
+.contact-icon:hover {
+    transform: translateY(-2px);
+}
+.tg-icon { background-image: url('./img/telegram-logo.png'); }
+.vk-icon { background-image: url('./img/vk-logo.png'); }
+.tel-icon { background-image: url('./img/phone.png'); }
+
+.contact-phone {
+    color: #B58900;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.contact-phone:hover {
+    text-decoration: underline;
+}
+
+/* --- НИЗ (Политика) --- */
+.footer__row--bottom {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.footer__policy {
+    color: #A7B0C2;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+.footer__policy:hover {
+    color: #B58900;
+}
+
+/* --- АДАПТИВ --- */
+@media (max-width: 768px) {
+    .footer__row {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer__row--contacts {
+        align-items: center;
+    }
+    .footer__social-icons {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .footer__divider {
+        width: 80%;
+    }
+}

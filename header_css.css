@@ -1,0 +1,137 @@
+/* --- БАЗОВЫЕ СТИЛИ ШАПКИ --- */
+.main-header {
+    align-content: center;
+    width: 100%;
+    background-color: #1A2230;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container-header {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    position: relative; /* Важно для позиционирования меню */
+}
+
+/* Логотип */
+.header__logo img {
+    display: block;
+    height: 60px;
+    width: auto;
+}
+
+/* Гамбургер (скрыт на десктопе) */
+.header__hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: #B58900;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+    z-index: 1001;
+}
+
+/* --- МЕНЮ (содержит всё: и ссылки, и контакты) --- */
+.header__menu {
+    /* НА ДЕСКТОПЕ: обычное меню справа от логотипа */
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Стили ссылок */
+.header__menu ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+.header__menu a {
+    text-decoration: none;
+    color: #E0E5EC;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.header__menu a:hover { color: #B58900; }
+
+/* Стили контактов внутри меню */
+.header__contacts {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.contact-icon { width: 28px; height: 28px; background-size: cover; border-radius: 50%; transition: 0.3s; }
+.contact-icon:hover { transform: translateY(-2px); opacity: 0.8; }
+.tg-icon { background-image: url('./img/telegram-logo.png'); margin-right: 25px; }
+.vk-icon { background-image: url('./img/vk-logo.png'); margin-right: 25px; }
+.tel-icon { background-image: url('./img/phone.png'); margin-right: 10px; }
+a.contact-phone { color: #B58900; font-size: 18px; font-weight: 600; text-decoration: none; margin-right: 25px; white-space: nowrap; }
+.contact-phone:hover { text-decoration: underline; transform: translateY(-2px); }
+.contact__btn { font-size: 1.1rem; font-weight: 600; color: #1A2230; background-color: #B58900; border: none; padding: 10px 25px; border-radius: 10px; cursor: pointer; transition: 0.4s; box-shadow: 0 4px 15px rgba(181, 137, 0, 0.4); }
+
+/* --- АДАПТИВНОСТЬ (Мобильные) --- */
+@media (max-width: 1490px) {
+    .container-header {
+        max-width: 90%;
+        padding: 0 15px;
+    }
+
+    /* 1. Скрываем ВСЁ меню целиком */
+    .header__menu {
+        display: none; /* Полностью убираем из потока */
+        position: absolute;
+        top: 100%; /* Прямо под шапкой */
+        left: 0;
+        right: 0;
+        background-color: #1A2230;
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start; /* Контент по левому краю */
+        gap: 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        z-index: 999;
+    }
+
+    /* 2. Показываем гамбургер */
+    .header__hamburger {
+        display: block;
+    }
+
+    /* 3. Стили для открытого состояния (добавляется через JS) */
+    .header__menu.active {
+        display: flex; /* Показываем, когда нужно */
+    }
+
+    /* 4. Внутренние стили открытого меню */
+    .header__menu.active ul {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+    .header__menu.active a {
+        font-size: 1.2rem;
+    }
+
+    .header__menu.active .header__contacts {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .header__menu.active .contact-phone {
+        margin-right: 0;
+        font-size: 1.2rem;
+    }
+    .header__menu.active .contact__btn {
+        width: 100%;
+        text-align: center;
+    }
+}

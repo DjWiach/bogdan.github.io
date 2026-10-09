@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     /* ===================== */
     const modal = document.getElementById('booking-modal');
     
-    // Проверяем, есть ли вообще модалка на странице
     if (modal) {
         const modalImg = document.getElementById('modal-img');
         const modalTitle = document.getElementById('modal-title');
@@ -15,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const closeBtn = modal.querySelector('.modal__close');
         const openButtons = document.querySelectorAll('.send_btn');
 
-        // Открытие по кнопке "Подробнее"
         openButtons.forEach(button => {
             button.addEventListener('click', function() {
                 modalTitle.textContent = this.dataset.title;
@@ -28,7 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Закрытие по крестику
         if (closeBtn) {
             closeBtn.onclick = function() {
                 modal.style.display = 'none';
@@ -36,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Закрытие по клику мимо окна
         modal.onclick = function(event) {
             if (event.target === modal) {
                 modal.style.display = 'none';
@@ -44,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Закрытие по Escape
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && modal.style.display === 'flex') {
                 modal.style.display = 'none';
@@ -53,20 +48,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     /* ===================== */
     /* ==== ФОРМА ЗАПИСИ ==== */
     /* ===================== */
     const form = document.getElementById('booking-form');
     
-    // Проверяем, есть ли форма на странице
     if (form) {
         const nameInput = document.getElementById('name');
         const phoneInput = document.getElementById('phone');
         const statusDiv = document.getElementById('form-status');
         const submitBtn = form.querySelector('.form-btn');
 
-        // 1. Настройка маски (Inputmask должен быть подключен в HTML)
+        // 1. Настройка маски
         const mask = new Inputmask({
             mask: "+7-999-999-99-99",
             showMaskOnHover: false,
@@ -74,15 +67,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         mask.mask(phoneInput);
 
+        /* --- ФУНКЦИЯ ОТОБРАЖЕНИЯ СТАТУСА (перенесена наверх) --- */
+        function showStatus(message, type = '') {
+            statusDiv.textContent = message;
+            statusDiv.className = 'form-status';
+            if (type) {
+                statusDiv.classList.add(type);
+            }
+        }
+
         // 2. Валидация и отправка
         form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
+            // === ПРОВЕРКА ЧЕКБОКСА ===
+            const acceptTermsCheckbox = document.getElementById('accept_terms');
+            
+            if (!acceptTermsCheckbox.checked) {
+                showStatus('Вы не дали согласие на обработку персональных данных', 'error');
+                acceptTermsCheckbox.focus();
+                return;
+            }
+
             if (nameInput.value.trim().length < 2) {
                 showStatus('Введите корректное имя', 'error');
                 nameInput.focus();
                 return;
             }
+
             if (!Inputmask.isValid(phoneInput.value, { mask: "+7-999-999-99-99" })) {
                 showStatus('Введите полный номер телефона', 'error');
                 phoneInput.focus();
@@ -96,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData();
             formData.append('name', nameInput.value.trim());
             formData.append('phone', " "+phoneInput.value);
-            // Дата в секундах (если нужна)
+
             try {
                 const response = await fetch('https://script.google.com/macros/s/AKfycby6OEfxc743hAFs8coHHaQDK6XlQtsFKK9W8ZtL_ke7KiqAT7GRwefkUDuNCH0HUjQ/exec', {
                     method: 'POST',
@@ -108,8 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     form.reset();
                     mask.remove();
                     mask.mask(phoneInput);
-                    // Закрываем модалку после успешной отправки, если она была открыта
-                    if (modal) modal.style.display = 'none'; 
+                    //if (modal) modal.style.display = 'none'; 
                 } else {
                     throw new Error('Серверная ошибка');
                 }
@@ -120,15 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.textContent = 'Отправить';
             }
         });
-
-        function showStatus(message, type = '') {
-            statusDiv.textContent = message;
-            statusDiv.className = 'form-status';
-            if (type) {
-                statusDiv.classList.add(type);
-            
-			}
-        }
     }
 
 });
